@@ -126,7 +126,7 @@ TEST(OstreamLogExporter, DefaultLogRecordToCout)
     std::string::size_type result = ostream_output.find(expected);
     if (result == std::string::npos)
     {
-      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << std::endl;
+      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << '\n';
     }
     ASSERT_NE(result, std::string::npos);
   }
@@ -201,7 +201,7 @@ TEST(OStreamLogRecordExporter, SimpleLogToCout)
     std::string::size_type result = ostream_output.find(expected);
     if (result == std::string::npos)
     {
-      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << std::endl;
+      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << '\n';
     }
     ASSERT_NE(result, std::string::npos);
   }
@@ -275,7 +275,7 @@ TEST(OStreamLogRecordExporter, LogWithStringAttributesToCerr)
     std::string::size_type result = ostream_output.find(expected);
     if (result == std::string::npos)
     {
-      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << std::endl;
+      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << '\n';
     }
     ASSERT_NE(result, std::string::npos);
   }
@@ -356,7 +356,7 @@ TEST(OStreamLogRecordExporter, LogWithVariantTypesToClog)
     std::string::size_type result = ostream_output.find(expected);
     if (result == std::string::npos)
     {
-      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << std::endl;
+      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << '\n';
     }
     ASSERT_NE(result, std::string::npos);
   }
@@ -429,7 +429,7 @@ TEST(OStreamLogRecordExporter, IntegrationTest)
     std::string::size_type result = ostream_output.find(expected);
     if (result == std::string::npos)
     {
-      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << std::endl;
+      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << '\n';
     }
     ASSERT_NE(result, std::string::npos);
   }
@@ -500,7 +500,7 @@ TEST(OStreamLogRecordExporter, IntegrationTestWithEventId)
     std::string::size_type result = ostream_output.find(expected);
     if (result == std::string::npos)
     {
-      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << std::endl;
+      std::cout << "Can not find: \"" << expected << "\" in\n" << ostream_output << '\n';
     }
     ASSERT_NE(result, std::string::npos);
   }

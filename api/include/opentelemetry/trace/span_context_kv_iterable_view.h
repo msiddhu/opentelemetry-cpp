@@ -32,7 +32,7 @@ inline void take_span_context_kv(SpanContext, T &)
 {}
 
 inline void take_span_context_kv(
-    SpanContext,
+    const SpanContext &,
     std::initializer_list<std::pair<nostd::string_view, common::AttributeValue>>)
 {}
 
@@ -81,7 +81,7 @@ public:
 private:
   const T *container_;
 
-  bool do_callback(SpanContext span_context,
+  bool do_callback(const SpanContext &span_context,
                    const common::KeyValueIterable &attributes,
                    nostd::function_ref<bool(SpanContext, const common::KeyValueIterable &)>
                        callback) const noexcept

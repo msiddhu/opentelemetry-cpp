@@ -433,7 +433,7 @@ struct SocketData
 
   SocketData() : socket(), flags(0) {}
 
-  bool operator==(Socket s) { return (socket == s); }
+  bool operator==(const Socket &s) { return (socket == s); }
 };
 
 /// <summary>

@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <utility>
+
 #include "opentelemetry/nostd/shared_ptr.h"
 #include "opentelemetry/trace/span_id.h"
 #include "opentelemetry/trace/trace_flags.h"
@@ -44,7 +46,7 @@ public:
         span_id_(span_id),
         trace_flags_(trace_flags),
         is_remote_(is_remote),
-        trace_state_(trace_state)
+        trace_state_(std::move(trace_state))
   {}
 
   SpanContext(const SpanContext &ctx) = default;

@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <string>
+#include <utility>
 #include <vector>
 #include "opentelemetry/nostd/string_view.h"
 #include "opentelemetry/version.h"
@@ -32,7 +33,7 @@ public:
   std::string query_;
   bool success_;
 
-  UrlParser(std::string url) : url_(url), success_(true)
+  UrlParser(std::string url) : url_(std::move(url)), success_(true)
   {
     if (url_.length() == 0)
     {
@@ -53,8 +54,8 @@ public:
     }
 
     // credentials
-    size_t pos1 = url_.find_first_of("@", cpos);
-    size_t pos2 = url_.find_first_of("/", cpos);
+    size_t pos1 = url_.find_first_of('@', cpos);
+    size_t pos2 = url_.find_first_of('/', cpos);
     if (pos1 != std::string::npos)
     {
       // TODO - handle credentials
@@ -64,7 +65,7 @@ public:
         cpos = pos1 + 1;
       }
     }
-    pos          = url_.find_first_of(":", cpos);
+    pos          = url_.find_first_of(':', cpos);
     bool is_port = false;
     if (pos == std::string::npos)
     {

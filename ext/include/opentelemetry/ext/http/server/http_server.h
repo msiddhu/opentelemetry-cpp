@@ -6,6 +6,7 @@
 #include <functional>
 #include <list>
 #include <map>
+#include <utility>
 
 #include "socket_tools.h"
 
@@ -56,17 +57,17 @@ public:
   HttpRequestCallback() {}
   virtual ~HttpRequestCallback() = default;
 
-  HttpRequestCallback &operator=(HttpRequestCallback other)
+  HttpRequestCallback &operator=(const HttpRequestCallback &other)
   {
     callback = other.callback;
     return *this;
   }
 
-  HttpRequestCallback(CallbackFunction func) : callback(func) {}
+  HttpRequestCallback(CallbackFunction func) : callback(std::move(func)) {}
 
   HttpRequestCallback &operator=(CallbackFunction func)
   {
-    callback = func;
+    callback = std::move(func);
     return (*this);
   }
 
@@ -122,7 +123,7 @@ protected:
   public:
     HttpRequestHandler(std::string key, HttpRequestCallback *value)
     {
-      first  = key;
+      first  = std::move(key);
       second = value;
     }
 
@@ -132,7 +133,7 @@ protected:
       second = nullptr;
     }
 
-    HttpRequestHandler &operator=(std::pair<std::string, HttpRequestCallback *> other)
+    HttpRequestHandler &operator=(const std::pair<std::string, HttpRequestCallback *> &other)
     {
       first  = other.first;
       second = other.second;
@@ -168,7 +169,7 @@ public:
         m_maxRequestContentSize(2 * 1024 * 1024)
   {}
 
-  HttpServer(std::string serverHost, int port = 30000) : HttpServer()
+  HttpServer(const std::string &serverHost, int port = 30000) : HttpServer()
   {
     std::ostringstream os;
     os << serverHost << ":" << port;

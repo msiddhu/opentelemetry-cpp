@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <utility>
+
 #include "opentelemetry/common/macros.h"
 #include "opentelemetry/context/context.h"
 #include "opentelemetry/nostd/shared_ptr.h"
@@ -150,7 +152,7 @@ public:
    */
   static void SetRuntimeContextStorage(nostd::shared_ptr<RuntimeContextStorage> storage) noexcept
   {
-    GetStorage() = storage;
+    GetStorage() = std::move(storage);
   }
 
   /**

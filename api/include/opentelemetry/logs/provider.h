@@ -4,6 +4,7 @@
 #pragma once
 
 #include <mutex>
+#include <utility>
 
 #include "opentelemetry/common/macros.h"
 #include "opentelemetry/common/spin_lock_mutex.h"
@@ -42,7 +43,7 @@ public:
   static void SetLoggerProvider(nostd::shared_ptr<LoggerProvider> tp) noexcept
   {
     std::lock_guard<common::SpinLockMutex> guard(GetLock());
-    GetProvider() = tp;
+    GetProvider() = std::move(tp);
   }
 
   /**
@@ -63,7 +64,7 @@ public:
   static void SetEventLoggerProvider(nostd::shared_ptr<EventLoggerProvider> tp) noexcept
   {
     std::lock_guard<common::SpinLockMutex> guard(GetLock());
-    GetEventProvider() = tp;
+    GetEventProvider() = std::move(tp);
   }
 
 private:

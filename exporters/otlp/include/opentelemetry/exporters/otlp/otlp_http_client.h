@@ -223,7 +223,7 @@ private:
       event_handle.swap(input_handle);
     }
 
-    inline HttpSessionData(HttpSessionData &&other)
+    inline HttpSessionData(HttpSessionData &&other) noexcept
     {
       session.swap(other.session);
       event_handle.swap(other.event_handle);

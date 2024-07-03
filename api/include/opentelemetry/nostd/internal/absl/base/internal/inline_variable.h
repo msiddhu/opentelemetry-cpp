@@ -68,7 +68,7 @@
 //   types, etc..
 #if defined(__clang__)
 #define OTABSL_INTERNAL_EXTERN_DECL(type, name) \
-  extern const ::absl::OTABSL_OPTION_INLINE_NAMESPACE_NAME::internal::identity_t<type> name;
+  extern const ::absl::OTABSL_OPTION_INLINE_NAMESPACE_NAME::internal::identity_t<type> (name);
 #else  // Otherwise, just define the macro to do nothing.
 #define OTABSL_INTERNAL_EXTERN_DECL(type, name)
 #endif  // defined(__clang__)
@@ -76,7 +76,7 @@
 // See above comment at top of file for details.
 #define OTABSL_INTERNAL_INLINE_CONSTEXPR(type, name, init) \
   OTABSL_INTERNAL_EXTERN_DECL(type, name)                  \
-  inline constexpr ::absl::OTABSL_OPTION_INLINE_NAMESPACE_NAME::internal::identity_t<type> name = init
+  inline constexpr ::absl::OTABSL_OPTION_INLINE_NAMESPACE_NAME::internal::identity_t<type> (name) = init
 
 #else
 

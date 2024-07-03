@@ -4,6 +4,7 @@
 #pragma once
 
 #include <cstring>
+#include <utility>
 #include "opentelemetry/context/context_value.h"
 #include "opentelemetry/nostd/shared_ptr.h"
 #include "opentelemetry/nostd/string_view.h"
@@ -32,7 +33,7 @@ public:
 
   // Creates a context object from a key and value, this will
   // hold a shared_ptr to the head of the DataList linked list
-  Context(nostd::string_view key, ContextValue value) noexcept
+  Context(nostd::string_view key, const ContextValue &value) noexcept
   {
     head_ = nostd::shared_ptr<DataList>{new DataList(key, value)};
   }
@@ -58,7 +59,7 @@ public:
   // exisiting list to the end of the new list.
   Context SetValue(nostd::string_view key, ContextValue value) noexcept
   {
-    Context context      = Context(key, value);
+    Context context      = Context(key, std::move(value));
     context.head_->next_ = head_;
     return context;
   }

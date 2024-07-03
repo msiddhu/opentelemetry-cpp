@@ -4,6 +4,7 @@
 #pragma once
 
 #include <mutex>
+#include <utility>
 
 #include "opentelemetry/context/propagation/noop_propagator.h"
 
@@ -35,7 +36,7 @@ public:
   static void SetGlobalPropagator(nostd::shared_ptr<TextMapPropagator> prop) noexcept
   {
     std::lock_guard<common::SpinLockMutex> guard(GetLock());
-    GetPropagator() = prop;
+    GetPropagator() = std::move(prop);
   }
 
 private:

@@ -4,6 +4,7 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 
 #include "opentelemetry/common/key_value_iterable.h"
 #include "opentelemetry/plugin/detail/tracer_handle.h"  // IWYU pragma: export
@@ -21,7 +22,7 @@ class Span final : public trace::Span
 {
 public:
   Span(std::shared_ptr<trace::Tracer> &&tracer, nostd::shared_ptr<trace::Span> span) noexcept
-      : tracer_{std::move(tracer)}, span_{span}
+      : tracer_{std::move(tracer)}, span_{std::move(span)}
   {}
 
   // trace::Span
