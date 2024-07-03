@@ -214,7 +214,7 @@ class Tracer : public opentelemetry::trace::Tracer,
     {
       size_t idx = 0;
       std::string linksValue;
-      links.ForEachKeyValue([&](opentelemetry::trace::SpanContext ctx,
+      links.ForEachKeyValue([&](const opentelemetry::trace::SpanContext &ctx,
                                 const opentelemetry::common::KeyValueIterable &) {
         if (!linksValue.empty())
         {

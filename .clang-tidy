@@ -1,1 +1,1 @@
-Checks: 'clang-analyzer-*,performance-*,bugprone-*'
+Checks: 'clang-analyzer-*,performance-*,bugprone-*,google-*,concurrency-*'

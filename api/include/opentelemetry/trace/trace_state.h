@@ -184,7 +184,9 @@ public:
     kv_properties_->GetAllEntries(
         [&ts, &key](nostd::string_view e_key, nostd::string_view e_value) {
           if (key != e_key)
+          {
             ts->kv_properties_->AddEntry(e_key, e_value);
+          }
           return true;
         });
     return ts;

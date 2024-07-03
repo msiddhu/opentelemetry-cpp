@@ -17,11 +17,17 @@ proto::metrics::v1::AggregationTemporality OtlpMetricUtils::GetProtoAggregationT
     const opentelemetry::sdk::metrics::AggregationTemporality &aggregation_temporality) noexcept
 {
   if (aggregation_temporality == opentelemetry::sdk::metrics::AggregationTemporality::kCumulative)
+  {
     return proto::metrics::v1::AggregationTemporality::AGGREGATION_TEMPORALITY_CUMULATIVE;
+  }
   else if (aggregation_temporality == opentelemetry::sdk::metrics::AggregationTemporality::kDelta)
+  {
     return proto::metrics::v1::AggregationTemporality::AGGREGATION_TEMPORALITY_DELTA;
+  }
   else
+  {
     return proto::metrics::v1::AggregationTemporality::AGGREGATION_TEMPORALITY_UNSPECIFIED;
+  }
 }
 
 metric_sdk::AggregationType OtlpMetricUtils::GetAggregationType(

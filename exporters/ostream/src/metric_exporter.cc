@@ -117,7 +117,7 @@ sdk::common::ExportResult OStreamMetricExporter::Export(
 
 void OStreamMetricExporter::printAttributes(
     const std::map<std::string, sdk::common::OwnedAttributeValue> &map,
-    const std::string prefix)
+    const std::string &prefix)
 {
   for (const auto &kv : map)
   {
@@ -135,7 +135,9 @@ void OStreamMetricExporter::printResources(const opentelemetry::sdk::resource::R
     // order is guaranteed.
     std::map<std::string, sdk::common::OwnedAttributeValue> attr_map;
     for (auto &kv : attributes)
+    {
       attr_map[kv.first] = std::move(kv.second);
+    }
     printAttributes(attr_map, "\n\t");
   }
 }

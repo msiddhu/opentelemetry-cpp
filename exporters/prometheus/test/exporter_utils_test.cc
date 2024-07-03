@@ -22,7 +22,7 @@ namespace metrics
 class SanitizeNameTester
 {
 public:
-  static std::string sanitize(std::string name)
+  static std::string sanitize(const std::string &name)
   {
     return PrometheusExporterUtils::SanitizeNames(name);
   }

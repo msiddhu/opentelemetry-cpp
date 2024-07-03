@@ -36,7 +36,7 @@ class GreeterClient
 public:
   GreeterClient(std::shared_ptr<Channel> channel) : stub_(Greeter::NewStub(channel)) {}
 
-  std::string Greet(std::string ip, uint16_t port)
+  std::string Greet(const std::string &ip, uint16_t port)
   {
     // Build gRPC Context objects and protobuf message containers
     GreetRequest request;

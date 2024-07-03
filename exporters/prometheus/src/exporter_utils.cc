@@ -86,7 +86,7 @@ inline std::string Sanitize(std::string name, const T &valid)
  *   [a-zA-Z_]([a-zA-Z0-9_])*
  * and multiple consecutive _ characters must be collapsed to a single _.
  */
-std::string SanitizeLabel(std::string label_key)
+std::string SanitizeLabel(const std::string &label_key)
 {
   return Sanitize(label_key, [](int i, char c) {
     return (c >= 'a' && c <= 'z') ||  //
