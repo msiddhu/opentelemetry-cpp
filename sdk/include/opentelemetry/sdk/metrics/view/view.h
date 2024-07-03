@@ -5,6 +5,7 @@
 
 #include <memory>
 #include <string>
+#include <utility>
 
 #include "opentelemetry/sdk/metrics/aggregation/aggregation_config.h"
 #include "opentelemetry/sdk/metrics/instruments.h"
@@ -36,7 +37,7 @@ public:
         description_(description),
         unit_(unit),
         aggregation_type_{aggregation_type},
-        aggregation_config_{aggregation_config},
+        aggregation_config_{std::move(aggregation_config)},
         attributes_processor_{std::move(attributes_processor)}
   {}
 

@@ -62,7 +62,7 @@ public:
 
   static std::unique_ptr<Aggregation> CreateAggregation(
       AggregationType aggregation_type,
-      InstrumentDescriptor instrument_descriptor,
+      const InstrumentDescriptor& instrument_descriptor,
       const AggregationConfig *aggregation_config = nullptr)
   {
     switch (aggregation_type)
@@ -114,7 +114,7 @@ public:
   }
 
   static std::unique_ptr<Aggregation> CloneAggregation(AggregationType aggregation_type,
-                                                       InstrumentDescriptor instrument_descriptor,
+                                                       const InstrumentDescriptor& instrument_descriptor,
                                                        const Aggregation &to_copy)
   {
     const PointType point_data = to_copy.ToPoint();

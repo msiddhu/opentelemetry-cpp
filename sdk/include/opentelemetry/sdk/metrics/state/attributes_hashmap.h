@@ -68,7 +68,7 @@ public:
    */
   Aggregation *GetOrSetDefault(const opentelemetry::common::KeyValueIterable &attributes,
                                const AttributesProcessor *attributes_processor,
-                               std::function<std::unique_ptr<Aggregation>()> aggregation_callback,
+                               const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback,
                                size_t hash)
   {
     auto it = hash_map_.find(hash);
@@ -88,7 +88,7 @@ public:
     return hash_map_[hash].second.get();
   }
 
-  Aggregation *GetOrSetDefault(std::function<std::unique_ptr<Aggregation>()> aggregation_callback,
+  Aggregation *GetOrSetDefault(const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback,
                                size_t hash)
   {
     auto it = hash_map_.find(hash);
@@ -108,7 +108,7 @@ public:
   }
 
   Aggregation *GetOrSetDefault(const MetricAttributes &attributes,
-                               std::function<std::unique_ptr<Aggregation>()> aggregation_callback,
+                               const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback,
                                size_t hash)
   {
     auto it = hash_map_.find(hash);
@@ -199,7 +199,7 @@ private:
   size_t attributes_limit_;
 
   Aggregation *GetOrSetOveflowAttributes(
-      std::function<std::unique_ptr<Aggregation>()> aggregation_callback)
+      const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback)
   {
     auto agg = aggregation_callback();
     return GetOrSetOveflowAttributes(std::move(agg));

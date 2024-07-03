@@ -111,7 +111,7 @@ public:
    */
   static inline void SetLogHandler(nostd::shared_ptr<LogHandler> eh) noexcept
   {
-    GetHandlerAndLevel().first = eh;
+    GetHandlerAndLevel().first = std::move(eh);
   }
 
   /**
@@ -147,7 +147,7 @@ OPENTELEMETRY_END_NAMESPACE
   {                                                                                       \
     using opentelemetry::sdk::common::internal_log::GlobalLogHandler;                     \
     using opentelemetry::sdk::common::internal_log::LogHandler;                           \
-    if (level > GlobalLogHandler::GetLogLevel())                                          \
+    if ((level) > GlobalLogHandler::GetLogLevel())                                          \
     {                                                                                     \
       break;                                                                              \
     }                                                                                     \

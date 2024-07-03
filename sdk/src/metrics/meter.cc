@@ -54,7 +54,7 @@ Meter::Meter(
     std::weak_ptr<MeterContext> meter_context,
     std::unique_ptr<sdk::instrumentationscope::InstrumentationScope> instrumentation_scope) noexcept
     : scope_{std::move(instrumentation_scope)},
-      meter_context_{meter_context},
+      meter_context_{std::move(meter_context)},
       observable_registry_(new ObservableRegistry())
 {}
 
@@ -456,7 +456,7 @@ std::vector<MetricData> Meter::Collect(CollectorHandle *collector,
   for (auto &metric_storage : storage_registry_)
   {
     metric_storage.second->Collect(collector, ctx->GetCollectors(), ctx->GetSDKStartTime(),
-                                   collect_ts, [&metric_data_list](MetricData metric_data) {
+                                   collect_ts, [&metric_data_list](const MetricData& metric_data) {
                                      metric_data_list.push_back(metric_data);
                                      return true;
                                    });
