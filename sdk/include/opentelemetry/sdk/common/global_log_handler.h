@@ -147,7 +147,7 @@ OPENTELEMETRY_END_NAMESPACE
   {                                                                                       \
     using opentelemetry::sdk::common::internal_log::GlobalLogHandler;                     \
     using opentelemetry::sdk::common::internal_log::LogHandler;                           \
-    if ((level) > GlobalLogHandler::GetLogLevel())                                          \
+    if ((level) > GlobalLogHandler::GetLogLevel())                                        \
     {                                                                                     \
       break;                                                                              \
     }                                                                                     \

@@ -74,7 +74,7 @@ private:
 class SpanDataLink
 {
 public:
-  SpanDataLink(const opentelemetry::trace::SpanContext& span_context,
+  SpanDataLink(const opentelemetry::trace::SpanContext &span_context,
                const opentelemetry::common::KeyValueIterable &attributes)
       : span_context_(span_context), attribute_map_(attributes)
   {}

@@ -69,7 +69,7 @@ public:
   static PointType CreateDropPointData() { return DropPointData{}; }
 
 private:
-  ExemplarData(const std::shared_ptr<opentelemetry::trace::SpanContext>& context,
+  ExemplarData(const std::shared_ptr<opentelemetry::trace::SpanContext> &context,
                opentelemetry::common::SystemTimestamp timestamp,
                const PointDataAttributes &point_data_attr)
       : context_(*context.get()), timestamp_(timestamp), point_data_attr_(point_data_attr)

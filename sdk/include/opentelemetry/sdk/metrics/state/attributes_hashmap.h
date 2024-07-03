@@ -66,10 +66,11 @@ public:
    * If not present, it uses the provided callback to generate
    * value and store in the hash
    */
-  Aggregation *GetOrSetDefault(const opentelemetry::common::KeyValueIterable &attributes,
-                               const AttributesProcessor *attributes_processor,
-                               const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback,
-                               size_t hash)
+  Aggregation *GetOrSetDefault(
+      const opentelemetry::common::KeyValueIterable &attributes,
+      const AttributesProcessor *attributes_processor,
+      const std::function<std::unique_ptr<Aggregation>()> &aggregation_callback,
+      size_t hash)
   {
     auto it = hash_map_.find(hash);
     if (it != hash_map_.end())
@@ -88,8 +89,9 @@ public:
     return hash_map_[hash].second.get();
   }
 
-  Aggregation *GetOrSetDefault(const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback,
-                               size_t hash)
+  Aggregation *GetOrSetDefault(
+      const std::function<std::unique_ptr<Aggregation>()> &aggregation_callback,
+      size_t hash)
   {
     auto it = hash_map_.find(hash);
     if (it != hash_map_.end())
@@ -107,9 +109,10 @@ public:
     return hash_map_[hash].second.get();
   }
 
-  Aggregation *GetOrSetDefault(const MetricAttributes &attributes,
-                               const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback,
-                               size_t hash)
+  Aggregation *GetOrSetDefault(
+      const MetricAttributes &attributes,
+      const std::function<std::unique_ptr<Aggregation>()> &aggregation_callback,
+      size_t hash)
   {
     auto it = hash_map_.find(hash);
     if (it != hash_map_.end())
@@ -199,7 +202,7 @@ private:
   size_t attributes_limit_;
 
   Aggregation *GetOrSetOveflowAttributes(
-      const std::function<std::unique_ptr<Aggregation>()>& aggregation_callback)
+      const std::function<std::unique_ptr<Aggregation>()> &aggregation_callback)
   {
     auto agg = aggregation_callback();
     return GetOrSetOveflowAttributes(std::move(agg));

@@ -42,11 +42,11 @@ public:
    * not be a nullptr
    */
   explicit LoggerProvider(std::unique_ptr<LogRecordProcessor> &&processor,
-                          const opentelemetry::sdk::resource::Resource& resource =
+                          const opentelemetry::sdk::resource::Resource &resource =
                               opentelemetry::sdk::resource::Resource::Create({})) noexcept;
 
   explicit LoggerProvider(std::vector<std::unique_ptr<LogRecordProcessor>> &&processors,
-                          const opentelemetry::sdk::resource::Resource& resource =
+                          const opentelemetry::sdk::resource::Resource &resource =
                               opentelemetry::sdk::resource::Resource::Create({})) noexcept;
 
   /**
