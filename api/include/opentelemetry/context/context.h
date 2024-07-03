@@ -57,9 +57,9 @@ public:
   // Accepts a new iterable and then returns a new context that
   // contains the new key and value data. It attaches the
   // exisiting list to the end of the new list.
-  Context SetValue(nostd::string_view key, ContextValue value) noexcept
+  Context SetValue(nostd::string_view key, const ContextValue &value) noexcept
   {
-    Context context      = Context(key, std::move(value));
+    Context context      = Context(key, value);
     context.head_->next_ = head_;
     return context;
   }

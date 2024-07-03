@@ -98,7 +98,9 @@ public:
     kv_properties_->GetAllEntries(
         [&baggage, &key](nostd::string_view e_key, nostd::string_view e_value) {
           if (key != e_key)
+          {
             baggage->kv_properties_->AddEntry(e_key, e_value);
+          }
           return true;
         });
     return baggage;

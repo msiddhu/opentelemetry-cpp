@@ -158,7 +158,7 @@ public:
    * @param v
    * @return
    */
-  PropertyValue() : PropertyVariant(int32_t(0)) {}
+  PropertyValue() : PropertyVariant(static_cast<int32_t>(0)) {}
 
   /**
    * @brief PropertyValue from array of characters as string.

@@ -18,6 +18,6 @@ enum class PreferredAggregationTemporality
   kLowMemory,
 };
 
-}
+}  // namespace otlp
 }  // namespace exporter
 OPENTELEMETRY_END_NAMESPACE

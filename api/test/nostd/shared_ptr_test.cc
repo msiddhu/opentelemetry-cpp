@@ -173,7 +173,7 @@ static void SharedPtrTest_Sort(size_t size = 10)
   auto nums2 = nums;
 
   std::sort(nums.begin(), nums.end(),
-            [](shared_ptr<const int> a, shared_ptr<const int> b) { return *a < *b; });
+            [](const shared_ptr<const int> &a, const shared_ptr<const int> &b) { return *a < *b; });
 
   EXPECT_NE(nums, nums2);
 

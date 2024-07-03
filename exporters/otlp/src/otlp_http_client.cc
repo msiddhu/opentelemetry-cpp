@@ -38,6 +38,7 @@
 #include <mutex>
 #include <sstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 #ifdef GetMessage
@@ -685,12 +686,14 @@ OtlpHttpClient::~OtlpHttpClient()
 
   // And then remove all session datas
   while (cleanupGCSessions())
+  {
     ;
+  }
 }
 
 OtlpHttpClient::OtlpHttpClient(OtlpHttpClientOptions &&options,
                                std::shared_ptr<ext::http::client::HttpClient> http_client)
-    : is_shutdown_(false), options_(options), http_client_(http_client)
+    : is_shutdown_(false), options_(options), http_client_(std::move(http_client))
 {
   http_client_->SetMaxSessionsPerConnection(options_.max_requests_per_connection);
 }
@@ -831,7 +834,9 @@ bool OtlpHttpClient::Shutdown(std::chrono::microseconds timeout) noexcept
   ForceFlush(timeout);
 
   while (cleanupGCSessions())
+  {
     ;
+  }
   return true;
 }
 

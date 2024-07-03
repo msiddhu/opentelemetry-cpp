@@ -35,7 +35,9 @@ void print_value(const std::vector<T> &vec, std::ostream &sout)
   {
     sout << v;
     if (i != sz)
+    {
       sout << ',';
+    }
     i++;
   };
   sout << ']';
@@ -51,7 +53,9 @@ void print_value(const nostd::span<T> &vec, std::ostream &sout)
   {
     sout << v;
     if (i != sz)
+    {
       sout << ',';
+    }
     i++;
   };
   sout << ']';

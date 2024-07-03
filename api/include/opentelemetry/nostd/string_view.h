@@ -85,7 +85,9 @@ public:
     size_type len = (std::min)(size(), v.size());
     int result    = Traits::compare(data(), v.data(), len);
     if (result == 0)
+    {
       result = size() == v.size() ? 0 : (size() < v.size() ? -1 : 1);
+    }
     return result;
   }
 

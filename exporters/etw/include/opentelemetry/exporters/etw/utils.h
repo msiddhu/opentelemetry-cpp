@@ -46,10 +46,10 @@ namespace utils
 /// </summary>
 static constexpr uint32_t hashCode(const char *str, uint32_t h = 0)
 {
-  return (uint32_t)(!str[h] ? 5381 : ((uint32_t)hashCode(str, h + 1) * (uint32_t)33) ^ str[h]);
+  return (!str[h] ? 5381 : (hashCode(str, h + 1) * static_cast<uint32_t>(33)) ^ str[h]);
 }
 
-#define CONST_UINT32_T(x) std::integral_constant<uint32_t, (uint32_t)x>::value
+#define CONST_UINT32_T(x) std::integral_constant<uint32_t, (uint32_t)(x)>::value
 
 #define CONST_HASHCODE(name) CONST_UINT32_T(OPENTELEMETRY_NAMESPACE::utils::hashCode(#name))
 

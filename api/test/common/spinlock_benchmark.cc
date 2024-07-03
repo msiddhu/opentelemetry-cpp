@@ -47,7 +47,9 @@ inline void SpinThrash(benchmark::State &s, SpinLockType &spinlock, LockF lock, 
     }
     // Join threads
     for (auto &thread : threads)
+    {
       thread.join();
+    }
     threads.clear();
   }
 }

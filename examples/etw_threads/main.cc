@@ -139,7 +139,9 @@ int main(int arc, char **argv)
     try
     {
       if (th.joinable())
+      {
         th.join();
+      }
     }
     catch (...)
     {
