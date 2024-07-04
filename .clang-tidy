@@ -1,1 +1,25 @@
-Checks: 'clang-analyzer-*,performance-*,bugprone-*,google-*,concurrency-*'
+Checks: >
+  -*,
+  abseil-*,
+  bugprone-*,
+  google-*,
+  misc-*,
+  performance-*,
+  portability-*,
+  -google-readability-braces-around-statements,
+  -google-explicit-constructor,
+  -google-readability-todo,
+  -google-runtime-references,
+  -misc-non-private-member-variables-in-classes,
+  -misc-const-correctness,
+  -misc-include-cleaner,
+  -bugprone-narrowing-conversions,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-inc-dec-in-conditions,
+  -bugprone-implicit-widening-of-multiplication-result,
+  -bugprone-unchecked-optional-access,
+  -bugprone-unused-local-non-trivial-variable,
+  -bugprone-unused-return-value
+
+# Turn all the warnings from the checks above into errors.
+WarningsAsErrors: "*"

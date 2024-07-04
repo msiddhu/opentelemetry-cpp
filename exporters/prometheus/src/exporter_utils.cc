@@ -24,7 +24,6 @@
 #include "opentelemetry/sdk/common/global_log_handler.h"
 
 namespace prometheus_client = ::prometheus;
-namespace metric_sdk        = opentelemetry::sdk::metrics;
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter

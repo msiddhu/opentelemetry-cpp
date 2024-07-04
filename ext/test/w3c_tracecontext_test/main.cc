@@ -20,7 +20,6 @@ namespace http_client = opentelemetry::ext::http::client;
 namespace curl        = opentelemetry::ext::http::client::curl;
 namespace context     = opentelemetry::context;
 namespace nostd       = opentelemetry::nostd;
-namespace trace_sdk   = opentelemetry::sdk::trace;
 
 namespace
 {

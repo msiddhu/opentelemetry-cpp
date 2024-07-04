@@ -10,7 +10,6 @@
 #include "prometheus_test_helper.h"
 
 using opentelemetry::exporter::metrics::PrometheusExporterUtils;
-namespace metric_sdk        = opentelemetry::sdk::metrics;
 namespace prometheus_client = ::prometheus;
 
 OPENTELEMETRY_BEGIN_NAMESPACE

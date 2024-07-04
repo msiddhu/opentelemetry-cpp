@@ -9,8 +9,6 @@
 
 #include <gtest/gtest.h>
 
-namespace baggage = opentelemetry::baggage;
-namespace common  = opentelemetry::common;
 namespace nostd   = opentelemetry::nostd;
 namespace shim    = opentelemetry::opentracingshim;
 

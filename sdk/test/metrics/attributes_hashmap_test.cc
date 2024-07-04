@@ -9,7 +9,6 @@
 #include <functional>
 
 using namespace opentelemetry::sdk::metrics;
-namespace nostd = opentelemetry::nostd;
 
 TEST(AttributesHashMap, BasicTests)
 {

@@ -124,7 +124,7 @@ public:
   class async_interface : public async_interface_base
   {
   public:
-    async_interface(OtlpMockLogsServiceStub *owner) : stub_(owner) {}
+    explicit async_interface(OtlpMockLogsServiceStub *owner) : stub_(owner) {}
 
     virtual ~async_interface() {}
 

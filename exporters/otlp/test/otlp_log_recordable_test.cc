@@ -15,7 +15,6 @@ namespace exporter
 {
 namespace otlp
 {
-namespace resource = opentelemetry::sdk::resource;
 namespace proto    = opentelemetry::proto;
 
 TEST(OtlpLogRecordable, Basic)

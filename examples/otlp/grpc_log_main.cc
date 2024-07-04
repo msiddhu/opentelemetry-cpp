@@ -29,9 +29,7 @@
 namespace trace     = opentelemetry::trace;
 namespace nostd     = opentelemetry::nostd;
 namespace otlp      = opentelemetry::exporter::otlp;
-namespace logs_sdk  = opentelemetry::sdk::logs;
 namespace logs      = opentelemetry::logs;
-namespace trace_sdk = opentelemetry::sdk::trace;
 
 namespace
 {

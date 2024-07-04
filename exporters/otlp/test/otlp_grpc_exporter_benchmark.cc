@@ -15,9 +15,6 @@
 #  include "foo_library/foo_library.h"
 #endif
 
-namespace trace     = opentelemetry::trace;
-namespace nostd     = opentelemetry::nostd;
-namespace trace_sdk = opentelemetry::sdk::trace;
 namespace otlp      = opentelemetry::exporter::otlp;
 
 #include <benchmark/benchmark.h>

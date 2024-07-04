@@ -11,9 +11,6 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
-namespace sdklogs       = opentelemetry::sdk::logs;
-namespace logs_api      = opentelemetry::logs;
-namespace nostd         = opentelemetry::nostd;
 namespace logs_exporter = opentelemetry::exporter::logs;
 
 TEST(ElasticsearchLogsExporterTests, Dummy)

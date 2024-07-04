@@ -9,7 +9,6 @@
 #include "opentelemetry/sdk/common/global_log_handler.h"
 #include "opentelemetry/sdk_config.h"
 
-namespace nostd      = opentelemetry::nostd;
 namespace sdk_common = opentelemetry::sdk::common;
 
 /*

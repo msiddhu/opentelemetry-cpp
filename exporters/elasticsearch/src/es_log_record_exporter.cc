@@ -9,7 +9,6 @@
 #include "opentelemetry/exporters/elasticsearch/es_log_recordable.h"
 #include "opentelemetry/sdk_config.h"
 
-namespace nostd       = opentelemetry::nostd;
 namespace sdklogs     = opentelemetry::sdk::logs;
 namespace http_client = opentelemetry::ext::http::client;
 

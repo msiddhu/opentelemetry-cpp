@@ -42,8 +42,6 @@ namespace exporter
 namespace otlp
 {
 
-namespace trace_api = opentelemetry::trace;
-namespace resource  = opentelemetry::sdk::resource;
 
 template <class T, size_t N>
 static nostd::span<T, N> MakeSpan(T (&array)[N])
@@ -79,7 +77,6 @@ OtlpHttpClientOptions MakeOtlpHttpClientOptions(HttpRequestContentType content_t
   return otlp_http_client_options;
 }
 
-namespace http_client = opentelemetry::ext::http::client;
 
 class OtlpHttpExporterTestPeer : public ::testing::Test
 {

@@ -13,8 +13,6 @@
 
 using opentelemetry::exporter::metrics::PrometheusCollector;
 using opentelemetry::sdk::metrics::ResourceMetrics;
-namespace metric_api      = opentelemetry::metrics;
-namespace metric_sdk      = opentelemetry::sdk::metrics;
 namespace metric_exporter = opentelemetry::exporter::metrics;
 
 class MockMetricProducer : public opentelemetry::sdk::metrics::MetricProducer

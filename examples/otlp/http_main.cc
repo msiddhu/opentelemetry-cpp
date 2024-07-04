@@ -19,7 +19,6 @@
 #endif
 
 namespace trace     = opentelemetry::trace;
-namespace trace_sdk = opentelemetry::sdk::trace;
 namespace otlp      = opentelemetry::exporter::otlp;
 
 namespace internal_log = opentelemetry::sdk::common::internal_log;

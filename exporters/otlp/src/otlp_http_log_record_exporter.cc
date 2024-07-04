@@ -14,7 +14,6 @@
 
 #include "opentelemetry/sdk/common/global_log_handler.h"
 
-namespace nostd = opentelemetry::nostd;
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter

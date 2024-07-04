@@ -45,7 +45,6 @@
 #  undef GetMessage
 #endif
 
-namespace nostd       = opentelemetry::nostd;
 namespace http_client = opentelemetry::ext::http::client;
 
 OPENTELEMETRY_BEGIN_NAMESPACE

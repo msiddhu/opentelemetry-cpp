@@ -16,8 +16,6 @@ namespace zipkin
 
 using namespace opentelemetry::sdk::resource;
 namespace trace_api = opentelemetry::trace;
-namespace common    = opentelemetry::common;
-namespace sdk       = opentelemetry::sdk;
 
 // constexpr needs keys to be constexpr, const is next best to use.
 static const std::map<trace_api::SpanKind, std::string> kSpanKindMap = {

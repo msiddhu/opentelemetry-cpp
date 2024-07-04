@@ -17,7 +17,6 @@
 namespace trace_api = opentelemetry::trace;
 namespace nostd     = opentelemetry::nostd;
 namespace context   = opentelemetry::context;
-namespace baggage   = opentelemetry::baggage;
 namespace shim      = opentelemetry::opentracingshim;
 
 class TracerShimTest : public testing::Test
@@ -223,7 +222,7 @@ class TracerWithSpanContext : public trace_api::Tracer
 {
 public:
   nostd::shared_ptr<trace_api::Span> StartSpan(
-      nostd::string_view name,
+      nostd::string_view  /*name*/,
       const common::KeyValueIterable & /* attributes */,
       const trace_api::SpanContextKeyValueIterable & /* links */,
       const trace_api::StartSpanOptions & /* options */) noexcept override

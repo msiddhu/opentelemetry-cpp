@@ -1,6 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
+//NOLINTNEXTLINE
 #define _WINSOCKAPI_  // stops including winsock.h
 #include "opentelemetry/exporters/zipkin/zipkin_exporter.h"
 #include <mutex>
@@ -9,7 +10,6 @@
 #include "opentelemetry/ext/http/common/url_parser.h"
 #include "opentelemetry/sdk_config.h"
 
-namespace http_client = opentelemetry::ext::http::client;
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter

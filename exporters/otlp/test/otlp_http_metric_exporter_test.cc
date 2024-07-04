@@ -85,7 +85,6 @@ OtlpHttpClientOptions MakeOtlpHttpClientOptions(HttpRequestContentType content_t
   return otlp_http_client_options;
 }
 
-namespace http_client = opentelemetry::ext::http::client;
 
 class OtlpHttpMetricExporterTestPeer : public ::testing::Test
 {

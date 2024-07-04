@@ -22,7 +22,6 @@
 
 namespace trace    = opentelemetry::trace;
 namespace nostd    = opentelemetry::nostd;
-namespace sdktrace = opentelemetry::sdk::trace;
 namespace common   = opentelemetry::common;
 namespace zipkin   = opentelemetry::exporter::zipkin;
 using json         = nlohmann::json;
