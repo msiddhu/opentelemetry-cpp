@@ -30,8 +30,6 @@ namespace sdk
 {
 namespace logs
 {
-namespace trace_api = opentelemetry::trace;
-namespace common    = opentelemetry::common;
 
 Logger::Logger(
     opentelemetry::nostd::string_view name,

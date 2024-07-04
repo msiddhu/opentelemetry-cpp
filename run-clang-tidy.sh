@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
 # Define the find command to exclude certain directories and find relevant files
 FIND='find . -name third_party -prune -o -name build -prune -o -name .git -prune -o -name "*.h" -o -name "*.cc" -print'
 

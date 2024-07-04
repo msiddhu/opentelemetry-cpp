@@ -9,7 +9,6 @@
 
 namespace trace_api = opentelemetry::trace;
 namespace nostd     = opentelemetry::nostd;
-namespace context   = opentelemetry::context;
 
 TEST(TracerTest, GetCurrentSpan)
 {

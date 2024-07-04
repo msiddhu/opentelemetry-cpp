@@ -18,7 +18,6 @@
 #include <vector>
 
 namespace metric_sdk      = opentelemetry::sdk::metrics;
-namespace nostd           = opentelemetry::nostd;
 namespace exportermetrics = opentelemetry::exporter::metrics;
 
 TEST(OStreamMetricsExporter, Shutdown)

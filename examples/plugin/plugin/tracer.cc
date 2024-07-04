@@ -18,7 +18,6 @@
 namespace nostd   = opentelemetry::nostd;
 namespace common  = opentelemetry::common;
 namespace trace   = opentelemetry::trace;
-namespace context = opentelemetry::context;
 
 namespace
 {

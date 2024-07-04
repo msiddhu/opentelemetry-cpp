@@ -35,7 +35,6 @@
 #endif
 
 namespace metrics_sdk     = opentelemetry::sdk::metrics;
-namespace common          = opentelemetry::common;
 namespace exportermetrics = opentelemetry::exporter::metrics;
 namespace metrics_api     = opentelemetry::metrics;
 
