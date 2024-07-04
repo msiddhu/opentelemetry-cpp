@@ -29,10 +29,10 @@
 #  include "logs_foo_library/foo_library.h"
 #endif
 
-namespace trace     = opentelemetry::trace;
-namespace nostd     = opentelemetry::nostd;
-namespace otlp      = opentelemetry::exporter::otlp;
-namespace logs      = opentelemetry::logs;
+namespace trace = opentelemetry::trace;
+namespace nostd = opentelemetry::nostd;
+namespace otlp  = opentelemetry::exporter::otlp;
+namespace logs  = opentelemetry::logs;
 
 namespace
 {

@@ -42,7 +42,6 @@ namespace exporter
 namespace otlp
 {
 
-
 template <class T, size_t N>
 static nostd::span<T, N> MakeSpan(T (&array)[N])
 {
@@ -76,7 +75,6 @@ OtlpHttpClientOptions MakeOtlpHttpClientOptions(HttpRequestContentType content_t
   }
   return otlp_http_client_options;
 }
-
 
 class OtlpHttpExporterTestPeer : public ::testing::Test
 {

@@ -15,9 +15,9 @@
 #include "opentelemetry/trace/span_metadata.h"
 #include "tracer.h"
 
-namespace nostd   = opentelemetry::nostd;
-namespace common  = opentelemetry::common;
-namespace trace   = opentelemetry::trace;
+namespace nostd  = opentelemetry::nostd;
+namespace common = opentelemetry::common;
+namespace trace  = opentelemetry::trace;
 
 namespace
 {

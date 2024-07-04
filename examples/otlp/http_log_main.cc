@@ -25,9 +25,9 @@
 #  include "logs_foo_library/foo_library.h"
 #endif
 
-namespace trace     = opentelemetry::trace;
-namespace otlp      = opentelemetry::exporter::otlp;
-namespace logs      = opentelemetry::logs;
+namespace trace = opentelemetry::trace;
+namespace otlp  = opentelemetry::exporter::otlp;
+namespace logs  = opentelemetry::logs;
 
 namespace internal_log = opentelemetry::sdk::common::internal_log;
 

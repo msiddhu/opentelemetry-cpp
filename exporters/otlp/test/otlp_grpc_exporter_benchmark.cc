@@ -15,7 +15,7 @@
 #  include "foo_library/foo_library.h"
 #endif
 
-namespace otlp      = opentelemetry::exporter::otlp;
+namespace otlp = opentelemetry::exporter::otlp;
 
 #include <benchmark/benchmark.h>
 

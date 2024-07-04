@@ -78,7 +78,6 @@ OtlpHttpClientOptions MakeOtlpHttpClientOptions(HttpRequestContentType content_t
   return otlp_http_client_options;
 }
 
-
 class OtlpHttpLogRecordExporterTestPeer : public ::testing::Test
 {
 public:

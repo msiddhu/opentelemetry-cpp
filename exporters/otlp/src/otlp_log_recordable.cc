@@ -8,7 +8,6 @@
 #include "opentelemetry/exporters/otlp/otlp_recordable_utils.h"
 #include "opentelemetry/sdk/logs/readable_log_record.h"
 
-
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter
 {

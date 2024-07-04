@@ -24,7 +24,6 @@ using opentelemetry::nostd::shared_ptr;
 using opentelemetry::nostd::span;
 using opentelemetry::nostd::string_view;
 
-
 namespace
 {
 

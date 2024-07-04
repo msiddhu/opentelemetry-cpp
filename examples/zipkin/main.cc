@@ -14,9 +14,9 @@
 #  include "foo_library/foo_library.h"
 #endif
 
-namespace trace     = opentelemetry::trace;
-namespace zipkin    = opentelemetry::exporter::zipkin;
-namespace resource  = opentelemetry::sdk::resource;
+namespace trace    = opentelemetry::trace;
+namespace zipkin   = opentelemetry::exporter::zipkin;
+namespace resource = opentelemetry::sdk::resource;
 
 namespace
 {

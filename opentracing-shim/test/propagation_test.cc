@@ -9,8 +9,8 @@
 
 #include <gtest/gtest.h>
 
-namespace nostd   = opentelemetry::nostd;
-namespace shim    = opentelemetry::opentracingshim;
+namespace nostd = opentelemetry::nostd;
+namespace shim  = opentelemetry::opentracingshim;
 
 TEST(PropagationTest, TextMapReader_Get_LookupKey_Unsupported)
 {

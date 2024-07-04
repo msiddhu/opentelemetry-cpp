@@ -222,7 +222,7 @@ class TracerWithSpanContext : public trace_api::Tracer
 {
 public:
   nostd::shared_ptr<trace_api::Span> StartSpan(
-      nostd::string_view  /*name*/,
+      nostd::string_view /*name*/,
       const common::KeyValueIterable & /* attributes */,
       const trace_api::SpanContextKeyValueIterable & /* links */,
       const trace_api::StartSpanOptions & /* options */) noexcept override

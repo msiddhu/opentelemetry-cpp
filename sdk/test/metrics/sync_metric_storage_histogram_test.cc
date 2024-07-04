@@ -21,7 +21,7 @@
 
 using namespace opentelemetry::sdk::metrics;
 using namespace opentelemetry::common;
-using M         = std::map<std::string, std::string>;
+using M = std::map<std::string, std::string>;
 
 class WritableMetricStorageHistogramTestFixture
     : public ::testing::TestWithParam<AggregationTemporality>

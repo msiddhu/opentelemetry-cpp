@@ -20,11 +20,11 @@
 
 #include <gtest/gtest.h>
 
-namespace trace    = opentelemetry::trace;
-namespace nostd    = opentelemetry::nostd;
-namespace common   = opentelemetry::common;
-namespace zipkin   = opentelemetry::exporter::zipkin;
-using json         = nlohmann::json;
+namespace trace  = opentelemetry::trace;
+namespace nostd  = opentelemetry::nostd;
+namespace common = opentelemetry::common;
+namespace zipkin = opentelemetry::exporter::zipkin;
+using json       = nlohmann::json;
 
 // Testing Shutdown functionality of OStreamSpanExporter, should expect no data to be sent to Stream
 TEST(ZipkinSpanRecordable, SetIdentity)

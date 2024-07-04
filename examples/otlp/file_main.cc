@@ -18,8 +18,8 @@
 #  include "foo_library/foo_library.h"
 #endif
 
-namespace trace     = opentelemetry::trace;
-namespace otlp      = opentelemetry::exporter::otlp;
+namespace trace = opentelemetry::trace;
+namespace otlp  = opentelemetry::exporter::otlp;
 
 namespace
 {
