@@ -27,7 +27,6 @@
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
-using grpc::ServerWriter;
 using grpc::Status;
 
 using grpc_example::Greeter;
@@ -49,7 +48,7 @@ public:
                const GreetRequest *request,
                GreetResponse *response) override
   {
-    for (auto elem : context->client_metadata())
+    for (const auto& elem : context->client_metadata())
     {
       std::cout << "ELEM: " << elem.first << " " << elem.second << "\n";
     }
@@ -78,7 +77,7 @@ public:
     // Fetch and parse whatever HTTP headers we can from the gRPC request.
     span->AddEvent("Processing client attributes");
 
-    std::string req = request->request();
+    const std::string& req = request->request();
     std::cout << std::endl << "grpc_client says: " << req << std::endl;
     std::string message = "The pleasure is mine.";
     // Send response to client

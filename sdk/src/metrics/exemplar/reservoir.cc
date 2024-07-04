@@ -3,6 +3,8 @@
 
 #ifdef ENABLE_METRICS_EXEMPLAR_PREVIEW
 
+#include <utility>
+
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir.h"
 #  include "opentelemetry/sdk/metrics/exemplar/aligned_histogram_bucket_exemplar_reservoir.h"
 #  include "opentelemetry/sdk/metrics/exemplar/no_exemplar_reservoir.h"
@@ -21,7 +23,7 @@ nostd::shared_ptr<ExemplarReservoir> ExemplarReservoir::GetSimpleFixedSizeExempl
     MapAndResetCellType map_and_reset_cell)
 {
   return nostd::shared_ptr<ExemplarReservoir>{
-      new SimpleFixedSizeExemplarReservoir{size, reservoir_cell_selector, map_and_reset_cell}};
+      new SimpleFixedSizeExemplarReservoir{size, std::move(reservoir_cell_selector), map_and_reset_cell}};
 }
 
 nostd::shared_ptr<ExemplarReservoir> ExemplarReservoir::GetAlignedHistogramBucketExemplarReservoir(
@@ -30,7 +32,7 @@ nostd::shared_ptr<ExemplarReservoir> ExemplarReservoir::GetAlignedHistogramBucke
     MapAndResetCellType map_and_reset_cell)
 {
   return nostd::shared_ptr<ExemplarReservoir>{new AlignedHistogramBucketExemplarReservoir{
-      size, reservoir_cell_selector, map_and_reset_cell}};
+      size, std::move(reservoir_cell_selector), map_and_reset_cell}};
 }
 
 nostd::shared_ptr<ExemplarReservoir> ExemplarReservoir::GetNoExemplarReservoir()

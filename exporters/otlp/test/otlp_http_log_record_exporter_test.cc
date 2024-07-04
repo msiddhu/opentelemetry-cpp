@@ -58,7 +58,7 @@ OtlpHttpClientOptions MakeOtlpHttpClientOptions(HttpRequestContentType content_t
   options.content_type  = content_type;
   options.console_debug = true;
   options.http_headers.insert(
-      std::make_pair<const std::string, std::string>("Custom-Header-Key", "Custom-Header-Value"));
+      std::make_pair("Custom-Header-Key", "Custom-Header-Value"));
   OtlpHttpClientOptions otlp_http_client_options(
       options.url, false,                 /* ssl_insecure_skip_verify */
       "", /* ssl_ca_cert_path */ "",      /* ssl_ca_cert_string */
@@ -152,7 +152,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id, report_span_id](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           auto check_json =
               nlohmann::json::parse(mock_session->GetRequest()->body_, nullptr, false);
           auto resource_logs     = *check_json["resourceLogs"].begin();
@@ -269,7 +269,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id, report_span_id](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           auto check_json =
               nlohmann::json::parse(mock_session->GetRequest()->body_, nullptr, false);
           auto resource_logs     = *check_json["resourceLogs"].begin();
@@ -391,7 +391,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id, report_span_id](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           opentelemetry::proto::collector::logs::v1::ExportLogsServiceRequest request_body;
           request_body.ParseFromArray(&mock_session->GetRequest()->body_[0],
                                       static_cast<int>(mock_session->GetRequest()->body_.size()));
@@ -399,7 +399,7 @@ public:
           EXPECT_EQ(scope_log.schema_url(), "https://opentelemetry.io/schemas/1.2.0");
           EXPECT_EQ(scope_log.scope().name(), "opentelelemtry_library");
           EXPECT_EQ(scope_log.scope().version(), "1.2.0");
-          auto received_log = scope_log.log_records(0);
+          const auto& received_log = scope_log.log_records(0);
           EXPECT_EQ(received_log.trace_id(), report_trace_id);
           EXPECT_EQ(received_log.span_id(), report_span_id);
           EXPECT_EQ("Log message", received_log.body().string_value());
@@ -504,7 +504,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id, report_span_id, schema_url](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           opentelemetry::proto::collector::logs::v1::ExportLogsServiceRequest request_body;
           request_body.ParseFromArray(&mock_session->GetRequest()->body_[0],
                                       static_cast<int>(mock_session->GetRequest()->body_.size()));

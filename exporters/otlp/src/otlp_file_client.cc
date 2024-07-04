@@ -173,11 +173,11 @@ static std::size_t FormatPath(char *buff,
   {                                     \
     tm_obj_cache = GetLocalTime();      \
     tm_obj_ptr   = &tm_obj_cache;       \
-    VAR          = tm_obj_ptr->EXPRESS; \
+    (VAR)          = tm_obj_ptr->EXPRESS; \
   }                                     \
   else                                  \
   {                                     \
-    VAR = tm_obj_ptr->EXPRESS;          \
+    (VAR) = tm_obj_ptr->EXPRESS;          \
   }
 
   for (size_t i = 0; i < fmt.size() && ret < bufz && running; ++i)

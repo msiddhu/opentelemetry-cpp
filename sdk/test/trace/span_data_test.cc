@@ -97,7 +97,7 @@ TEST(SpanData, Resources)
 {
   SpanData data;
   auto resource   = opentelemetry::sdk::resource::Resource::Create({});
-  auto input_attr = resource.GetAttributes();
+  const auto& input_attr = resource.GetAttributes();
   data.SetResource(resource);
   auto output_attr = data.GetResource().GetAttributes();
   EXPECT_EQ(input_attr, output_attr);

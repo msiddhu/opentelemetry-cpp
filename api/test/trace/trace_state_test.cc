@@ -20,7 +20,7 @@ const char *kLongString =
 
 // -------------------------- TraceState class tests ---------------------------
 
-std::string create_ts_return_header(std::string header)
+std::string create_ts_return_header(const std::string& header)
 {
   auto ts = TraceState::FromHeader(header);
   return ts->ToHeader();

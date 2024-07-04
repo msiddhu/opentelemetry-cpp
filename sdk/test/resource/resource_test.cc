@@ -25,7 +25,7 @@ namespace nostd = opentelemetry::nostd;
 class TestResource : public Resource
 {
 public:
-  TestResource(ResourceAttributes attributes = ResourceAttributes(), std::string schema_url = {})
+  TestResource(const ResourceAttributes& attributes = ResourceAttributes(), const std::string& schema_url = {})
       : Resource(attributes, schema_url)
   {}
 };
@@ -125,7 +125,7 @@ TEST(ResourceTest, create_with_schemaurl)
   const std::string schema_url  = "https://opentelemetry.io/schemas/1.2.0";
   ResourceAttributes attributes = {};
   auto resource                 = Resource::Create(attributes, schema_url);
-  auto received_schema_url      = resource.GetSchemaURL();
+  const auto& received_schema_url      = resource.GetSchemaURL();
 
   EXPECT_EQ(received_schema_url, schema_url);
 }

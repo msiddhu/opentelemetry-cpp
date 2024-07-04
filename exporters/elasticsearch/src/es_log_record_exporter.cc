@@ -5,6 +5,7 @@
 
 #include <condition_variable>
 #include <mutex>
+#include "absl/strings/match.h"
 #include "opentelemetry/exporters/elasticsearch/es_log_record_exporter.h"
 #include "opentelemetry/exporters/elasticsearch/es_log_recordable.h"
 #include "opentelemetry/sdk_config.h"
@@ -217,7 +218,7 @@ public:
       OTEL_INTERNAL_LOG_DEBUG(
           "[ES Log Exporter] Got response from Elasticsearch,  response body: " << body_);
     }
-    if (body_.find("\"failed\" : 0") == std::string::npos)
+    if (!absl::StrContains(body_, "\"failed\" : 0"))
     {
       OTEL_INTERNAL_LOG_ERROR(
           "[ES Log Exporter] Logs were not written to Elasticsearch correctly, response body: "

@@ -59,7 +59,7 @@ OtlpHttpClientOptions MakeOtlpHttpClientOptions(HttpRequestContentType content_t
   options.console_debug = true;
   options.timeout       = std::chrono::system_clock::duration::zero();
   options.http_headers.insert(
-      std::make_pair<const std::string, std::string>("Custom-Header-Key", "Custom-Header-Value"));
+      std::make_pair("Custom-Header-Key", "Custom-Header-Value"));
   OtlpHttpClientOptions otlp_http_client_options(
       options.url, false,                 /* ssl_insecure_skip_verify */
       "", /* ssl_ca_cert_path */ "",      /* ssl_ca_cert_string */
@@ -159,7 +159,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           auto check_json =
               nlohmann::json::parse(mock_session->GetRequest()->body_, nullptr, false);
           auto resource_span     = *check_json["resourceSpans"].begin();
@@ -250,7 +250,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           auto check_json =
               nlohmann::json::parse(mock_session->GetRequest()->body_, nullptr, false);
           auto resource_span     = *check_json["resourceSpans"].begin();
@@ -344,7 +344,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           opentelemetry::proto::collector::trace::v1::ExportTraceServiceRequest request_body;
           request_body.ParseFromArray(&mock_session->GetRequest()->body_[0],
                                       static_cast<int>(mock_session->GetRequest()->body_.size()));
@@ -425,7 +425,7 @@ public:
         std::static_pointer_cast<http_client::nosend::Session>(no_send_client->session_);
     EXPECT_CALL(*mock_session, SendRequest)
         .WillOnce([&mock_session, report_trace_id](
-                      std::shared_ptr<opentelemetry::ext::http::client::EventHandler> callback) {
+                      const std::shared_ptr<opentelemetry::ext::http::client::EventHandler>& callback) {
           opentelemetry::proto::collector::trace::v1::ExportTraceServiceRequest request_body;
           request_body.ParseFromArray(&mock_session->GetRequest()->body_[0],
                                       static_cast<int>(mock_session->GetRequest()->body_.size()));

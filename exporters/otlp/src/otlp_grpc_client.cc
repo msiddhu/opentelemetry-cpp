@@ -164,7 +164,7 @@ static sdk::common::ExportResult InternalDelegateAsyncExport(
   call_data->result_callback.swap(result_callback);
 
   call_data->request =
-      google::protobuf::Arena::Create<RequestType>(call_data->arena.get(), std::move(request));
+      google::protobuf::Arena::Create<RequestType>(call_data->arena.get(), std::forward<RequestType>(request));
   call_data->response = google::protobuf::Arena::Create<ResponseType>(call_data->arena.get());
 
   if (call_data->request == nullptr || call_data->response == nullptr)
