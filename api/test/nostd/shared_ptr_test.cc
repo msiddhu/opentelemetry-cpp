@@ -88,7 +88,7 @@ TEST(SharedPtrTest, MoveConstructionFromStdSharedPtr)
 TEST(SharedPtrTest, Destruction)
 {
   bool was_destructed;
-  shared_ptr<A>{new A{was_destructed}};
+  shared_ptr<A>{new A{was_destructed}};  // NOLINT
   EXPECT_TRUE(was_destructed);
 }
 
@@ -173,7 +173,7 @@ static void SharedPtrTest_Sort(size_t size = 10)
   auto nums2 = nums;
 
   std::sort(nums.begin(), nums.end(),
-            [](shared_ptr<const int> a, shared_ptr<const int> b) { return *a < *b; });
+            [](const shared_ptr<const int> &a, const shared_ptr<const int> &b) { return *a < *b; });
 
   EXPECT_NE(nums, nums2);
 

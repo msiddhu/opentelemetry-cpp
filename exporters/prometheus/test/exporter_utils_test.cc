@@ -113,7 +113,7 @@ void assert_basic(prometheus_client::MetricFamily &metric,
 }
 
 void assert_histogram(prometheus_client::MetricFamily &metric,
-                      const std::list<double>& boundaries,
+                      const std::list<double> &boundaries,
                       std::vector<int> correct)
 {
   int cumulative_count = 0;

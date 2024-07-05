@@ -74,7 +74,7 @@ TEST(UniquePtrTest, MoveConstructionFromStdUniquePtr)
 TEST(UniquePtrTest, Destruction)
 {
   bool was_destructed;
-  unique_ptr<A>{new A{was_destructed}};
+  unique_ptr<A>{new A{was_destructed}};  // NOLINT
   EXPECT_TRUE(was_destructed);
 }
 

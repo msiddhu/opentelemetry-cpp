@@ -138,7 +138,7 @@ bool OStreamSpanExporter::isShutdown() const noexcept
 
 void OStreamSpanExporter::printAttributes(
     const std::unordered_map<std::string, sdkcommon::OwnedAttributeValue> &map,
-    const std::string& prefix)
+    const std::string &prefix)
 {
   for (const auto &kv : map)
   {
@@ -178,7 +178,7 @@ void OStreamSpanExporter::printLinks(const std::vector<trace_sdk::SpanDataLink> 
 
 void OStreamSpanExporter::printResources(const opentelemetry::sdk::resource::Resource &resources)
 {
-  const auto& attributes = resources.GetAttributes();
+  const auto &attributes = resources.GetAttributes();
   if (attributes.size())
   {
     printAttributes(attributes, "\n\t");
@@ -189,7 +189,7 @@ void OStreamSpanExporter::printInstrumentationScope(
     const opentelemetry::sdk::instrumentationscope::InstrumentationScope &instrumentation_scope)
 {
   sout_ << instrumentation_scope.GetName();
-  const auto& version = instrumentation_scope.GetVersion();
+  const auto &version = instrumentation_scope.GetVersion();
   if (version.size())
   {
     sout_ << "-" << version;

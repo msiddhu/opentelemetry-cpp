@@ -71,7 +71,7 @@ struct TestResult
 
 struct TestResult g_test_result;
 
-void parse_error_msg(TestResult *result, const std::string& msg)
+void parse_error_msg(TestResult *result, const std::string &msg)
 {
   static std::string connection_failed("Session state: connection failed.");
 
@@ -116,11 +116,11 @@ void parse_error_msg(TestResult *result, const std::string& msg)
   }
 }
 
-void parse_warning_msg(TestResult * /* result */, const std::string& /* msg */) {}
+void parse_warning_msg(TestResult * /* result */, const std::string & /* msg */) {}
 
-void parse_info_msg(TestResult * /* result */, const std::string& /* msg */) {}
+void parse_info_msg(TestResult * /* result */, const std::string & /* msg */) {}
 
-void parse_debug_msg(TestResult *result, const std::string& msg)
+void parse_debug_msg(TestResult *result, const std::string &msg)
 {
   static std::string export_success("Export 1 trace span(s) success");
 
@@ -421,7 +421,7 @@ void list_test_cases()
   }
 }
 
-int run_test_case(const std::string& name)
+int run_test_case(const std::string &name)
 {
   const test_case *current = all_tests;
 

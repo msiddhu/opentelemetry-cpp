@@ -542,7 +542,7 @@ bool HttpClient::doAbortSessions()
   }
 
   bool has_data = false;
-  for (const auto& session : pending_to_abort_sessions)
+  for (const auto &session : pending_to_abort_sessions)
   {
     if (!session.second)
     {

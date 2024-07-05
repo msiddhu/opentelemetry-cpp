@@ -456,7 +456,7 @@ std::vector<MetricData> Meter::Collect(CollectorHandle *collector,
   for (auto &metric_storage : storage_registry_)
   {
     metric_storage.second->Collect(collector, ctx->GetCollectors(), ctx->GetSDKStartTime(),
-                                   collect_ts, [&metric_data_list](const MetricData& metric_data) {
+                                   collect_ts, [&metric_data_list](const MetricData &metric_data) {
                                      metric_data_list.push_back(metric_data);
                                      return true;
                                    });

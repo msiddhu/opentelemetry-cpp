@@ -24,10 +24,13 @@ Checks: >
   -bugprone-implicit-widening-of-multiplication-result,
   -bugprone-unchecked-optional-access,
   -bugprone-unused-local-non-trivial-variable,
-  -bugprone-unused-return-value,  
+  -bugprone-unused-return-value,
   -misc-unused-alias-decls,
   -google-explicit-constructor,
-  -google-readability-todo
+  -google-readability-todo,
+  -abseil-string-find-str-contains,
+  -misc-use-anonymous-namespace,
+  -google-build-using-namespace
 
 #added:
 #  -misc-unused-alias-decls,
@@ -49,14 +52,16 @@ Checks: >
 #  -readability-redundant-declaration,
 #  -readability-avoid-return-with-void-value,
 #  -readability-function-cognitive-complexity,
+#  -abseil-string-find-str-contains
+#  google-build-using-namespace - very good but requires lot of cleanup and help.
 # :TODO: include the excluded performance checks
 
 
 # Turn all the warnings from the checks above into errors.
 WarningsAsErrors: "*"
-  
-  
 
 
-  
+
+
+
 

@@ -97,7 +97,7 @@ class BatchSpanProcessorTestPeer : public testing::Test
 {
 public:
   std::unique_ptr<std::vector<std::unique_ptr<sdk::trace::Recordable>>> GetTestSpans(
-      const std::shared_ptr<sdk::trace::SpanProcessor>& processor,
+      const std::shared_ptr<sdk::trace::SpanProcessor> &processor,
       const int num_spans)
   {
     std::unique_ptr<std::vector<std::unique_ptr<sdk::trace::Recordable>>> test_spans(

@@ -3,8 +3,8 @@
 
 #include <utility>
 
-#include "opentelemetry/sdk/trace/samplers/parent_factory.h"
 #include "opentelemetry/sdk/trace/samplers/parent.h"
+#include "opentelemetry/sdk/trace/samplers/parent_factory.h"
 #include "opentelemetry/version.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
@@ -14,7 +14,7 @@ namespace trace
 {
 
 std::unique_ptr<Sampler> ParentBasedSamplerFactory::Create(
-    std::shared_ptr<Sampler> delegate_sampler)
+    const std::shared_ptr<Sampler> &delegate_sampler)
 {
   std::unique_ptr<Sampler> sampler(new ParentBasedSampler(std::move(delegate_sampler)));
   return sampler;

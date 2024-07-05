@@ -44,7 +44,7 @@ bool TemporalMetricStorage::buildMetrics(CollectorHandle *collector,
                                          nostd::span<std::shared_ptr<CollectorHandle>> collectors,
                                          opentelemetry::common::SystemTimestamp sdk_start_ts,
                                          opentelemetry::common::SystemTimestamp collection_ts,
-                                         const std::shared_ptr<AttributesHashMap>& delta_metrics,
+                                         const std::shared_ptr<AttributesHashMap> &delta_metrics,
                                          nostd::function_ref<bool(MetricData)> callback) noexcept
 {
   std::lock_guard<opentelemetry::common::SpinLockMutex> guard(lock_);

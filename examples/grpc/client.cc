@@ -33,7 +33,7 @@ using namespace opentelemetry::trace;
 class GreeterClient
 {
 public:
-  GreeterClient(const std::shared_ptr<Channel>& channel) : stub_(Greeter::NewStub(channel)) {}
+  GreeterClient(const std::shared_ptr<Channel> &channel) : stub_(Greeter::NewStub(channel)) {}
 
   std::string Greet(std::string ip, uint16_t port)
   {

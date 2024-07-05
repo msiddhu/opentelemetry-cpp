@@ -114,7 +114,7 @@ TEST(RuntimeContextTest, DetachOutOfOrder)
 
   std::vector<context::Context> contexts;
   contexts.reserve(indices.size());
-for (auto i : indices)
+  for (auto i : indices)
   {
     contexts.push_back(context::Context("index", static_cast<int64_t>(i)));
   }
@@ -124,7 +124,7 @@ for (auto i : indices)
     std::vector<nostd::unique_ptr<context::Token>> tokens;
 
     tokens.reserve(contexts.size());
-for (auto &c : contexts)
+    for (auto &c : contexts)
     {
       tokens.push_back(context::RuntimeContext::Attach(c));
     }

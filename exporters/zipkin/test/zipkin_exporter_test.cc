@@ -17,7 +17,7 @@
 #  include "nlohmann/json.hpp"
 
 #  include <string>
-#include <utility>
+#  include <utility>
 
 #  if defined(_MSC_VER)
 #    include "opentelemetry/sdk/common/env_variables.h"

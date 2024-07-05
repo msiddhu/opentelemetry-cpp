@@ -224,7 +224,7 @@ int HttpOperation::OnProgressCallback(void *clientp,
 #endif
 
 void HttpOperation::DispatchEvent(opentelemetry::ext::http::client::SessionState type,
-                                  const std::string& reason)
+                                  const std::string &reason)
 {
   if (event_handle_ != nullptr)
   {
@@ -437,7 +437,7 @@ void HttpOperation::Cleanup()
 #  define HAVE_TLS_VERSION
 #endif
 
-static long parse_min_ssl_version(const std::string& version)
+static long parse_min_ssl_version(const std::string &version)
 {
 #ifdef HAVE_TLS_VERSION
   if (version == "1.2")
@@ -454,7 +454,7 @@ static long parse_min_ssl_version(const std::string& version)
   return 0;
 }
 
-static long parse_max_ssl_version(const std::string& version)
+static long parse_max_ssl_version(const std::string &version)
 {
 #ifdef HAVE_TLS_VERSION
   if (version == "1.2")
