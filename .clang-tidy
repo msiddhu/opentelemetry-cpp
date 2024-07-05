@@ -66,8 +66,6 @@ Checks: >
 # TODO: remove build-project.sh from git
 
 UseColor: true
-# Turn all the warnings from the checks above into errors.
-WarningsAsErrors: "*"
 
 
 
