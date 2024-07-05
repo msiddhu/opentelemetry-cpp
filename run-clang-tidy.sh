@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # Define the find command to exclude certain directories and find relevant files
-FIND="find . -name third_party -prune -o -name tools -prune -o -name .git -prune -o -name _deps -prune -o -name .build -prune -o -name out -prune -o -name .vs -prune -o -name opentelemetry_logo.png -prune -o -name TraceLoggingDynamic.h -prune -o -name '*.h' -o -name '*.cc' -print"
+FIND="find . -name third_party -prune -o -name tools -prune -o -name .git -prune -o -name _deps -prune -o -name build -prune -o -name out -prune -o -name .vs -prune -o -name opentelemetry_logo.png -prune -o -name TraceLoggingDynamic.h -prune -o -name '*.h' -o -name '*.cc' -print"
 
 # Define the path to the compile_commands.json
 COMPILE_COMMANDS_PATH="./build/compile_commands.json"
@@ -12,7 +12,7 @@ COMPILE_COMMANDS_PATH="./build/compile_commands.json"
 # Define the log file name
 LOG_FILE="clang-tidy-output.log"
 
-FILTER_PATTERN="Suppressed [0-9]* warnings.*|Use -header-filter=.*|Use -system-headers.*"
+FILTER_PATTERN="Suppressed [0-9]* warnings.*|Use -header-filter=.*|Use -system-headers.* | warnings generated."
 
 # Ensure the log file is empty or does not exist
 rm -f $LOG_FILE
