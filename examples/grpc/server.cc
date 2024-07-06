@@ -78,7 +78,7 @@ public:
     span->AddEvent("Processing client attributes");
 
     const std::string &req = request->request();
-    std::cout << std::endl << "grpc_client says: " << req << std::endl;
+    std::cout << '\n' << "grpc_client says: " << req << '\n';
     std::string message = "The pleasure is mine.";
     // Send response to client
     response->set_response(message);
@@ -101,7 +101,7 @@ void RunServer(uint16_t port)
   builder.AddListeningPort(address, grpc::InsecureServerCredentials());
 
   std::unique_ptr<Server> server(builder.BuildAndStart());
-  std::cout << "Server listening on port: " << address << std::endl;
+  std::cout << "Server listening on port: " << address << '\n';
   server->Wait();
   server->Shutdown();
 }

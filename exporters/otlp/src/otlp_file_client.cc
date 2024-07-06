@@ -620,7 +620,7 @@ public:
   }
 
 #if !defined(UTIL_FS_DISABLE_LINK)
-  enum class LinkOption : int32_t
+  enum class LinkOption : uint8_t
   {
     kDefault       = 0x00,  // hard link for default
     kSymbolicLink  = 0x01,  // or soft link

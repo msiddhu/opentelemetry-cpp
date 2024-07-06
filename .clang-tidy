@@ -30,8 +30,6 @@ Checks: >
   -misc-unused-alias-decls,
   -misc-use-anonymous-namespace,
   performance-*,
-  -performance-avoid-endl,
-  -performance-enum-size,
   -performance-move-const-arg,
   portability-*
 #  readability-*,

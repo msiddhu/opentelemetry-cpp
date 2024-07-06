@@ -1,8 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-// NOLINTNEXTLINE
-#include <windows.h>
+#include <windows.h> // NOLINT
 
 // Include API header files here for exporting
 #include <opentelemetry/trace/provider.h>

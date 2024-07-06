@@ -72,7 +72,7 @@ TEST(SharedPtrTest, MoveConstructionFromDifferentType)
   auto value = new int{123};
   shared_ptr<int> ptr1{value};
   shared_ptr<const int> ptr2{std::move(ptr1)};
-  EXPECT_EQ(ptr1.get(), nullptr);
+  EXPECT_EQ(ptr1.get(), nullptr); // NOLINT
   EXPECT_EQ(ptr2.get(), value);
 }
 
@@ -81,7 +81,7 @@ TEST(SharedPtrTest, MoveConstructionFromStdSharedPtr)
   auto value = new int{123};
   std::shared_ptr<int> ptr1{value};
   shared_ptr<int> ptr2{std::move(ptr1)};
-  EXPECT_EQ(ptr1.get(), nullptr);
+  EXPECT_EQ(ptr1.get(), nullptr); // NOLINT
   EXPECT_EQ(ptr2.get(), value);
 }
 

@@ -149,19 +149,19 @@ public:
       case opentelemetry::sdk::common::internal_log::LogLevel::None:
         break;
       case opentelemetry::sdk::common::internal_log::LogLevel::Error:
-        std::cout << " - [E] " << msg << std::endl;
+        std::cout << " - [E] " << msg << '\n';
         parse_error_msg(&g_test_result, msg);
         break;
       case opentelemetry::sdk::common::internal_log::LogLevel::Warning:
-        std::cout << " - [W] " << msg << std::endl;
+        std::cout << " - [W] " << msg << '\n';
         parse_warning_msg(&g_test_result, msg);
         break;
       case opentelemetry::sdk::common::internal_log::LogLevel::Info:
-        std::cout << " - [I] " << msg << std::endl;
+        std::cout << " - [I] " << msg << '\n';
         parse_info_msg(&g_test_result, msg);
         break;
       case opentelemetry::sdk::common::internal_log::LogLevel::Debug:
-        std::cout << " - [D] " << msg << std::endl;
+        std::cout << " - [D] " << msg << '\n';
         parse_debug_msg(&g_test_result, msg);
         break;
     }
@@ -416,7 +416,7 @@ void list_test_cases()
 
   while (current->m_func != nullptr)
   {
-    std::cout << current->m_name << std::endl;
+    std::cout << current->m_name << '\n';
     current++;
   }
 }
@@ -435,7 +435,7 @@ int run_test_case(const std::string &name)
     current++;
   }
 
-  std::cerr << "Unknown test <" << name << ">" << std::endl;
+  std::cerr << "Unknown test <" << name << ">" << '\n';
   return 1;
 }
 

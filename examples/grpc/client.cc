@@ -76,7 +76,7 @@ public:
     }
     else
     {
-      std::cout << status.error_code() << ": " << status.error_message() << std::endl;
+      std::cout << status.error_code() << ": " << status.error_message() << '\n';
       span->SetStatus(StatusCode::kError);
       span->SetAttribute(SemanticConventions::kRpcGrpcStatusCode, status.error_code());
       // Make sure to end your spans!
@@ -94,7 +94,7 @@ void RunClient(uint16_t port)
   GreeterClient greeter(
       grpc::CreateChannel("0.0.0.0:" + std::to_string(port), grpc::InsecureChannelCredentials()));
   std::string response = greeter.Greet("0.0.0.0", port);
-  std::cout << "grpc_server says: " << response << std::endl;
+  std::cout << "grpc_server says: " << response << '\n';
 }
 }  // namespace
 

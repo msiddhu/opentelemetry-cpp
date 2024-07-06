@@ -876,7 +876,7 @@ OtlpHttpClient::createSession(
       std::string error_message = "[OTLP HTTP Client] Export failed, invalid url: " + options_.url;
       if (options_.console_debug)
       {
-        std::cerr << error_message << std::endl;
+        std::cerr << error_message << '\n';
       }
       OTEL_INTERNAL_LOG_ERROR(error_message.c_str());
 
@@ -941,7 +941,7 @@ OtlpHttpClient::createSession(
     const char *error_message = "[OTLP HTTP Client] Export failed, exporter is shutdown";
     if (options_.console_debug)
     {
-      std::cerr << error_message << std::endl;
+      std::cerr << error_message << '\n';
     }
     OTEL_INTERNAL_LOG_ERROR(error_message);
 
