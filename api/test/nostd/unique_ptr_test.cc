@@ -49,7 +49,7 @@ TEST(UniquePtrTest, MoveConstruction)
   auto value = new int{123};
   unique_ptr<int> ptr1{value};
   unique_ptr<int> ptr2{std::move(ptr1)};
-  EXPECT_EQ(ptr1.get(), nullptr); // NOLINT
+  EXPECT_EQ(ptr1.get(), nullptr);  // NOLINT
   EXPECT_EQ(ptr2.get(), value);
 }
 
@@ -58,7 +58,7 @@ TEST(UniquePtrTest, MoveConstructionFromDifferentType)
   auto value = new int{123};
   unique_ptr<int> ptr1{value};
   unique_ptr<const int> ptr2{std::move(ptr1)};
-  EXPECT_EQ(ptr1.get(), nullptr); // NOLINT
+  EXPECT_EQ(ptr1.get(), nullptr);  // NOLINT
   EXPECT_EQ(ptr2.get(), value);
 }
 
@@ -67,7 +67,7 @@ TEST(UniquePtrTest, MoveConstructionFromStdUniquePtr)
   auto value = new int{123};
   std::unique_ptr<int> ptr1{value};
   unique_ptr<int> ptr2{std::move(ptr1)};
-  EXPECT_EQ(ptr1.get(), nullptr); //NOLINT
+  EXPECT_EQ(ptr1.get(), nullptr);  // NOLINT
   EXPECT_EQ(ptr2.get(), value);
 }
 
@@ -83,13 +83,13 @@ TEST(UniquePtrTest, StdUniquePtrConversionOperator)
   auto value = new int{123};
   unique_ptr<int> ptr1{value};
   std::unique_ptr<int> ptr2{std::move(ptr1)};
-  EXPECT_EQ(ptr1.get(), nullptr); //NOLINT
+  EXPECT_EQ(ptr1.get(), nullptr);  // NOLINT
   EXPECT_EQ(ptr2.get(), value);
 
   value = new int{456};
   ptr1  = unique_ptr<int>{value};
   ptr2  = std::move(ptr1);
-  EXPECT_EQ(ptr1.get(), nullptr); //NOLINT
+  EXPECT_EQ(ptr1.get(), nullptr);  // NOLINT
   EXPECT_EQ(ptr2.get(), value);
 
   ptr2 = nullptr;

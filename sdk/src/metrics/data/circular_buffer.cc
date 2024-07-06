@@ -81,18 +81,17 @@ struct AdaptingIntegerArrayCopy
 
 }  // namespace
 
-
 void AdaptingIntegerArray::Increment(size_t index, uint64_t count)
 {
-    while (true)
+  while (true)
+  {
+    const uint64_t result = nostd::visit(AdaptingIntegerArrayIncrement{index, count}, backing_);
+    if OPENTELEMETRY_LIKELY_CONDITION (result == 0)
     {
-        const uint64_t result = nostd::visit(AdaptingIntegerArrayIncrement{index, count}, backing_);
-        if OPENTELEMETRY_LIKELY_CONDITION (result == 0)
-        {
-            return;
-        }
-        EnlargeToFit(result);
+      return;
     }
+    EnlargeToFit(result);
+  }
 }
 
 uint64_t AdaptingIntegerArray::Get(size_t index) const

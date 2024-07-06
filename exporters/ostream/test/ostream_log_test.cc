@@ -103,7 +103,9 @@ TEST(OstreamLogExporter, DefaultLogRecordToCout)
       "  severity_text      : INVALID\n",
       "  body               : \n",
       "  resource           : \n",
-      "    telemetry.sdk.version: ", OPENTELEMETRY_VERSION, "\n",
+      "    telemetry.sdk.version: ",
+      OPENTELEMETRY_VERSION,
+      "\n",
       "    telemetry.sdk.name: opentelemetry\n",
       "    telemetry.sdk.language: cpp\n",
       "  attributes         : \n",
@@ -114,12 +116,13 @@ TEST(OstreamLogExporter, DefaultLogRecordToCout)
       "  trace_flags        : 00\n",
       "  scope              : \n",
       "    name             : otel-cpp\n",
-      "    version          : ", OPENTELEMETRY_SDK_VERSION, "\n",
+      "    version          : ",
+      OPENTELEMETRY_SDK_VERSION,
+      "\n",
       "    schema_url       : https://opentelemetry.io/schemas/1.15.0\n",
       "    attributes       : \n",
       "      scope.attr.key: scope.attr.value\n",
-      "}\n"
-  };
+      "}\n"};
 
   std::string ostream_output = output.str();
   for (auto &expected : expected_output)
@@ -169,8 +172,7 @@ TEST(OStreamLogRecordExporter, SimpleLogToCout)
 
   std::vector<std::string> expected_output{
       "{\n",
-      "  timestamp          : " +
-          std::to_string(now.time_since_epoch().count()) +
+      "  timestamp          : " + std::to_string(now.time_since_epoch().count()) +
           "\n"
           "  observed_timestamp : " +
           std::to_string(now.time_since_epoch().count()) +
@@ -250,7 +252,9 @@ TEST(OStreamLogRecordExporter, LogWithStringAttributesToCerr)
       "  severity_text      : INVALID\n"
       "  body               : \n",
       "  resource           : \n",
-      "    telemetry.sdk.version: ", OPENTELEMETRY_VERSION, "\n",
+      "    telemetry.sdk.version: ",
+      OPENTELEMETRY_VERSION,
+      "\n",
       "    telemetry.sdk.name: opentelemetry\n",
       "    telemetry.sdk.language: cpp\n",
       "    service.name: unknown_service\n",
@@ -264,7 +268,9 @@ TEST(OStreamLogRecordExporter, LogWithStringAttributesToCerr)
       "  trace_flags        : 00\n",
       "  scope              : \n",
       "    name             : otel-cpp\n",
-      "    version          : ", OPENTELEMETRY_SDK_VERSION, "\n",
+      "    version          : ",
+      OPENTELEMETRY_SDK_VERSION,
+      "\n",
       "    schema_url       : https://opentelemetry.io/schemas/1.15.0\n",
       "    attributes       : \n",
       "      scope.attr.key: scope.attr.value\n",
@@ -345,7 +351,9 @@ TEST(OStreamLogRecordExporter, LogWithVariantTypesToClog)
       "  trace_flags        : 00\n",
       "  scope              : \n",
       "    name             : otel-cpp\n",
-      "    version          : ", OPENTELEMETRY_SDK_VERSION, "\n",
+      "    version          : ",
+      OPENTELEMETRY_SDK_VERSION,
+      "\n",
       "    schema_url       : https://opentelemetry.io/schemas/1.15.0\n",
       "    attributes       : \n",
       "      scope.attr.key: scope.attr.value\n",
@@ -400,8 +408,7 @@ TEST(OStreamLogRecordExporter, IntegrationTest)
   // Compare actual vs expected outputs
   std::vector<std::string> expected_output{
       "{\n",
-      "  timestamp          : " +
-          std::to_string(now.time_since_epoch().count()) + "\n",
+      "  timestamp          : " + std::to_string(now.time_since_epoch().count()) + "\n",
       "  severity_num       : 5\n"
       "  severity_text      : DEBUG\n"
       "  body               : Hello\n",
@@ -418,7 +425,9 @@ TEST(OStreamLogRecordExporter, IntegrationTest)
       "  trace_flags        : 00\n",
       "  scope              : \n",
       "    name             : opentelelemtry_library\n",
-      "    version          : ", OPENTELEMETRY_SDK_VERSION, "\n",
+      "    version          : ",
+      OPENTELEMETRY_SDK_VERSION,
+      "\n",
       "    schema_url       : https://opentelemetry.io/schemas/1.11.0\n",
       "    attributes       : \n",
       "      scope.attr.key: 123\n",
