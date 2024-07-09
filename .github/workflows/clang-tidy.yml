@@ -64,6 +64,7 @@ jobs:
 
       - name: Prepare CMake
         run: |
+          TOPDIR=`pwd`
           mkdir build && cd build
           echo "Running cmake..."
           CC="clang" CXX="clang++" cmake \
