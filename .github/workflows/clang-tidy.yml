@@ -33,12 +33,31 @@ jobs:
             wget \
             unzip
 
-      - name: Install Abseil from Source
+      - name: Install gRPC and Abseil from Source
         run: |
+          # Install Abseil
           wget https://github.com/abseil/abseil-cpp/archive/refs/heads/master.zip -O abseil.zip
           unzip abseil.zip
           mkdir -p abseil-build && cd abseil-build
           cmake ../abseil-cpp-master -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+          make -j$(nproc)
+          sudo make install
+          
+          # Install gRPC
+          cd ..
+          git clone --recurse-submodules -b v1.40.0 https://github.com/grpc/grpc
+          cd grpc
+          mkdir -p cmake/build && cd cmake/build
+          cmake ../.. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DgRPC_INSTALL=ON \
+            -DgRPC_BUILD_TESTS=OFF \
+            -DgRPC_ABSL_PROVIDER=package \
+            -DgRPC_CARES_PROVIDER=package \
+            -DgRPC_PROTOBUF_PROVIDER=package \
+            -DgRPC_RE2_PROVIDER=package \
+            -DgRPC_SSL_PROVIDER=package \
+            -DgRPC_ZLIB_PROVIDER=package
           make -j$(nproc)
           sudo make install
 
@@ -49,7 +68,7 @@ jobs:
         run: |
           mkdir build && cd build
           echo "Running cmake..."
-          cmake .. \
+          CC="clang" CXX="clang++" cmake .. \
             -DWITH_OTLP_HTTP=ON \
             -DWITH_OTLP_FILE=ON \
             -DWITH_OTLP_GRPC=ON \
