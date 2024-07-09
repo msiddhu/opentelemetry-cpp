@@ -34,7 +34,7 @@ jobs:
           sudo -E ./ci/setup_googletest.sh
           sudo -E ./ci/install_abseil.sh
           sudo -E ./ci/install_protobuf.sh
-      #          sudo -E ./ci/setup_grpc.sh -m -p protobuf -p abseil-cpp
+         sudo -E ./ci/setup_grpc.sh -m -p protobuf -p abseil-cpp
 
       - name: Prepare CMake
         run: |
@@ -56,9 +56,9 @@ jobs:
                -DBUILD_W3CTRACECONTEXT_TEST=ON \
                -DWITH_METRICS_EXEMPLAR_PREVIEW=ON \
                -DWITH_ASYNC_EXPORT_PREVIEW=ON \
-               -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-          #            -DWITH_OTLP_GRPC=ON \
-          #            -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON \
+               -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+               -DWITH_OTLP_GRPC=ON \
+               -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON 
                cd ..
 
       - name: Remove Third-party Modules from Code Scan
