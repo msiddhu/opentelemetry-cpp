@@ -15,7 +15,7 @@ jobs:
           submodules: recursive
 
       - name: Setup Dependencies
-        run: | 
+        run: |
           sudo apt update -y
           sudo apt install -y --no-install-recommends --no-install-suggests \
             build-essential \
@@ -30,7 +30,17 @@ jobs:
             libgmock-dev \
             libgtest-dev \
             libbenchmark-dev \
-            abseil
+            wget \
+            unzip
+
+      - name: Install Abseil from Source
+        run: |
+          wget https://github.com/abseil/abseil-cpp/archive/refs/heads/master.zip -O abseil.zip
+          unzip abseil.zip
+          mkdir -p abseil-build && cd abseil-build
+          cmake ../abseil-cpp-master -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+          make -j$(nproc)
+          sudo make install
 
       - name: Download run-clang-tidy.py
         run: wget https://raw.githubusercontent.com/llvm/llvm-project/main/clang-tools-extra/clang-tidy/tool/run-clang-tidy.py
