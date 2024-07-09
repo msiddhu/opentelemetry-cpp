@@ -23,9 +23,12 @@ NUM_PROCESSORS=$(nproc)
 # Function to run clang-tidy on a single file
 run_clang_tidy() {
   file=$1
-# echo "Running clang-tidy on $file"
+  echo "Running clang-tidy on $file"
   clang-tidy -p=$COMPILE_COMMANDS_PATH "$file" 2>&1 | grep -Ev "$FILTER_PATTERN" | tee -a $LOG_FILE
 }
+
+echo "Here list of directories we are searching: "
+ls
 
 export -f run_clang_tidy
 export COMPILE_COMMANDS_PATH
