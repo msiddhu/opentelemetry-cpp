@@ -22,6 +22,11 @@ jobs:
           CC: /usr/bin/gcc-10
           CXX: /usr/bin/g++-10
         run: |
+          sudo apt update -y
+          sudo apt install -y --no-install-recommends --no-install-suggests \
+          build-essential \
+          clang \
+          clang-format-18 
           sudo -E ./ci/setup_gcc10.sh
           sudo -E ./ci/setup_cmake.sh
           sudo -E ./ci/setup_ci_environment.sh
@@ -29,9 +34,6 @@ jobs:
           sudo -E ./ci/install_abseil.sh
           sudo -E ./ci/install_protobuf.sh
 #          sudo -E ./ci/setup_grpc.sh -m -p protobuf -p abseil-cpp
-
-      - name: Download run-clang-tidy.py
-        run: wget https://raw.githubusercontent.com/llvm/llvm-project/main/clang-tools-extra/clang-tidy/tool/run-clang-tidy.py
 
       - name: Prepare CMake
         run: |
@@ -56,6 +58,7 @@ jobs:
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 #            -DWITH_OTLP_GRPC=ON \
 #               -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON \
+          cd ..
 
       - name: Remove Third_party Modules from Code Scan
         run: rm -rf third_party
