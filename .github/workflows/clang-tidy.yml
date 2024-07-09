@@ -72,7 +72,7 @@ jobs:
             -DWITH_OTLP_HTTP=ON \
             -DWITH_OTLP_FILE=ON \
             -DWITH_PROMETHEUS=ON \
-            -DWITH_ZIPKIN=ON \
+            -DWITH_ZIPKIN=ON \ 
             -DWITH_ELASTICSEARCH=ON \
             -DWITH_OTLP_HTTP_COMPRESSION=ON \
             -DWITH_EXAMPLES=ON \
