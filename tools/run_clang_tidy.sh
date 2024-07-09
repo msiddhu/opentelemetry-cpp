@@ -24,7 +24,7 @@ NUM_PROCESSORS=$(nproc)
 run_clang_tidy() {
   file=$1
 # echo "Running clang-tidy on $file"
-  clang-tidy-18 -p=$COMPILE_COMMANDS_PATH "$file" 2>&1 | grep -Ev "$FILTER_PATTERN" | tee -a $LOG_FILE
+  clang-tidy -p=$COMPILE_COMMANDS_PATH "$file" 2>&1 | grep -Ev "$FILTER_PATTERN" | tee -a $LOG_FILE
 }
 
 export -f run_clang_tidy
