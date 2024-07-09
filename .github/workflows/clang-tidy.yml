@@ -26,47 +26,48 @@ jobs:
           sudo apt install -y --no-install-recommends --no-install-suggests \
           build-essential \
           clang \
-          clang-format-18 
+          clang-format-18 \
+          clang-tidy-18
           sudo -E ./ci/setup_gcc10.sh
           sudo -E ./ci/setup_cmake.sh
           sudo -E ./ci/setup_ci_environment.sh
           sudo -E ./ci/setup_googletest.sh
           sudo -E ./ci/install_abseil.sh
           sudo -E ./ci/install_protobuf.sh
-#          sudo -E ./ci/setup_grpc.sh -m -p protobuf -p abseil-cpp
+      #          sudo -E ./ci/setup_grpc.sh -m -p protobuf -p abseil-cpp
 
       - name: Prepare CMake
         run: |
-          TOPDIR=$(pwd)
-          mkdir -p build && cd build
-          echo "Running cmake..."
-          CC="clang" CXX="clang++" cmake .. \
-            -DCMAKE_CXX_STANDARD=14 \
-            -DWITH_STL=CXX14 \
-            -DWITH_OTLP_HTTP=ON \
-            -DWITH_OTLP_FILE=ON \
-            -DWITH_PROMETHEUS=ON \
-            -DWITH_ZIPKIN=ON \
-            -DWITH_ABSEIL=ON \
-            -DWITH_ELASTICSEARCH=ON \
-            -DWITH_OTLP_HTTP_COMPRESSION=ON \
-            -DWITH_EXAMPLES=ON \
-            -DWITH_EXAMPLES_HTTP=ON \
-            -DBUILD_W3CTRACECONTEXT_TEST=ON \
-            -DWITH_METRICS_EXEMPLAR_PREVIEW=ON \
-            -DWITH_ASYNC_EXPORT_PREVIEW=ON \
-            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-#            -DWITH_OTLP_GRPC=ON \
-#               -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON \
-          cd ..
+               TOPDIR=$(pwd)
+               mkdir -p build && cd build
+               echo "Running cmake..."
+               CC="clang" CXX="clang++" cmake .. \
+               -DCMAKE_CXX_STANDARD=14 \
+               -DWITH_STL=CXX14 \
+               -DWITH_OTLP_HTTP=ON \
+               -DWITH_OTLP_FILE=ON \
+               -DWITH_PROMETHEUS=ON \
+               -DWITH_ZIPKIN=ON \
+               -DWITH_ABSEIL=ON \
+               -DWITH_ELASTICSEARCH=ON \
+               -DWITH_OTLP_HTTP_COMPRESSION=ON \
+               -DWITH_EXAMPLES=ON \
+               -DWITH_EXAMPLES_HTTP=ON \
+               -DBUILD_W3CTRACECONTEXT_TEST=ON \
+               -DWITH_METRICS_EXEMPLAR_PREVIEW=ON \
+               -DWITH_ASYNC_EXPORT_PREVIEW=ON \
+               -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          #            -DWITH_OTLP_GRPC=ON \
+          #            -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON \
+               cd ..
 
-      - name: Remove Third_party Modules from Code Scan
+      - name: Remove Third-party Modules from Code Scan
         run: rm -rf third_party
 
       - name: Run Clang-Tidy
         run: |
           chmod +x tools/run_clang_tidy.sh
-          ./tools/run_clang_tidy.sh
+          ./tools/run_clang_tidy.sh | tee clang-tidy-output.log
 
       - uses: actions/upload-artifact@v4
         if: success() || failure()
