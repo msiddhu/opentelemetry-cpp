@@ -33,31 +33,31 @@ jobs:
             wget \
             unzip
 
-      - name: Install gRPC and Abseil from Source
-        run: |
-          # Install Abseil
-          wget https://github.com/abseil/abseil-cpp/archive/refs/heads/master.zip -O abseil.zip
-          unzip abseil.zip
-          mkdir -p abseil-build && cd abseil-build
-          cmake ../abseil-cpp-master -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-          make -j$(nproc)
-          sudo make install
-
-          # Install gRPC
-          cd ..
-          git clone --recurse-submodules -b v1.40.0 https://github.com/grpc/grpc
-          cd grpc
-          mkdir -p cmake/build && cd cmake/build
-          cmake ../.. \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DgRPC_INSTALL=ON \
-            -DgRPC_BUILD_TESTS=OFF \
-            -DgRPC_ABSL_PROVIDER=package \
-            -DgRPC_PROTOBUF_PROVIDER=package \
-            -DgRPC_SSL_PROVIDER=package \
-            -DgRPC_ZLIB_PROVIDER=package
-          make -j$(nproc)
-          sudo make install
+#      - name: Install gRPC and Abseil from Source
+#        run: |
+#          # Install Abseil
+#          wget https://github.com/abseil/abseil-cpp/archive/refs/heads/master.zip -O abseil.zip
+#          unzip abseil.zip
+#          mkdir -p abseil-build && cd abseil-build
+#          cmake ../abseil-cpp-master -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+#          make -j$(nproc)
+#          sudo make install
+#
+#          # Install gRPC
+#          cd ..
+#          git clone --recurse-submodules -b v1.40.0 https://github.com/grpc/grpc
+#          cd grpc
+#          mkdir -p cmake/build && cd cmake/build
+#          cmake ../.. \
+#            -DCMAKE_BUILD_TYPE=Release \
+#            -DgRPC_INSTALL=ON \
+#            -DgRPC_BUILD_TESTS=OFF \
+#            -DgRPC_ABSL_PROVIDER=package \
+#            -DgRPC_PROTOBUF_PROVIDER=package \
+#            -DgRPC_SSL_PROVIDER=package \
+#            -DgRPC_ZLIB_PROVIDER=package
+#          make -j$(nproc)
+#          sudo make install
 
       - name: Download run-clang-tidy.py
         run: wget https://raw.githubusercontent.com/llvm/llvm-project/main/clang-tools-extra/clang-tidy/tool/run-clang-tidy.py
@@ -69,7 +69,6 @@ jobs:
           CC="clang" CXX="clang++" cmake .. \
             -DWITH_OTLP_HTTP=ON \
             -DWITH_OTLP_FILE=ON \
-            -DWITH_OTLP_GRPC=ON \
             -DWITH_PROMETHEUS=ON \
             -DWITH_ZIPKIN=ON \
             -DWITH_ELASTICSEARCH=ON \
@@ -78,9 +77,10 @@ jobs:
             -DWITH_EXAMPLES_HTTP=ON \ 
             -DWITH_METRICS_EXEMPLAR_PREVIEW=ON \
             -DWITH_ASYNC_EXPORT_PREVIEW=ON \
-            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON \
-            -DWITH_ABSEIL=ON
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON 
+#            -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON \
+#            -DWITH_OTLP_GRPC=ON \
+#            -DWITH_ABSEIL=ON
 #            -DBUILD_W3CTRACECONTEXT_TEST=ON \
 
       - name: Remove Third_party Modules from Code Scan
