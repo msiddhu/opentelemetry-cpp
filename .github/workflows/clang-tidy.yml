@@ -43,18 +43,12 @@ jobs:
             -DWITH_STL=CXX14 \
             -DWITH_OTLP_HTTP=ON \
             -DWITH_OTLP_FILE=ON \
-            -DWITH_OTLP_GRPC=ON \
             -DWITH_PROMETHEUS=ON \
             -DWITH_ZIPKIN=ON \
-            -DWITH_ABSEIL=ON \
             -DWITH_ELASTICSEARCH=ON \
             -DWITH_OTLP_HTTP_COMPRESSION=ON \
             -DWITH_EXAMPLES=ON \
             -DWITH_EXAMPLES_HTTP=ON \
-            -DBUILD_W3CTRACECONTEXT_TEST=ON \
-            -DWITH_METRICS_EXEMPLAR_PREVIEW=ON \
-            -DWITH_ASYNC_EXPORT_PREVIEW=ON \
-            -DWITH_OTLP_GRPC_SSL_MTLS_PREVIEW=ON \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Remove Third_party Modules from Code Scan
@@ -62,17 +56,16 @@ jobs:
 
       - name: Run Clang-Tidy
         run: |
-          cd build
-          python3 ../run-clang-tidy.py -p .
+          chmod +x tools/run_clang_tidy.sh
+          ./tools/run_clang_tidy.sh
 
       - uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: Logs (clang-tidy)
-          path: ./build/clang-tidy-result.log
+          path: clang-tidy-output.log
 
       - name: Count Warnings
         run: |
-          cd build
-          COUNT=$(grep -c "warning:" clang-tidy-result.log)
+          COUNT=$(grep -c "warning:" clang-tidy-output.log)
           echo "clang-tidy reported ${COUNT} warning(s)"
