@@ -29,7 +29,8 @@ jobs:
             protobuf-compiler \
             libgmock-dev \
             libgtest-dev \
-            libbenchmark-dev
+            libbenchmark-dev \
+            abseil
 
       - name: Download run-clang-tidy.py
         run: wget https://raw.githubusercontent.com/llvm/llvm-project/main/clang-tools-extra/clang-tidy/tool/run-clang-tidy.py
