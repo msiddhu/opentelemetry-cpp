@@ -19,15 +19,12 @@ jobs:
           PROTOBUF_VERSION: '23.3'
           ABSEIL_CPP_VERSION: '20230125.3'
           CXX_STANDARD: '14'
-          CC: /usr/bin/gcc-10
-          CXX: /usr/bin/g++-10
         run: |
           sudo apt update -y
           sudo apt install -y --no-install-recommends --no-install-suggests \
           build-essential \
           clang \
           clang-tidy
-          sudo -E ./ci/setup_gcc10.sh
           sudo -E ./ci/setup_cmake.sh
           sudo -E ./ci/setup_ci_environment.sh
           sudo -E ./ci/setup_googletest.sh
