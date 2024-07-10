@@ -36,7 +36,7 @@ NUM_PROCESSORS=$(nproc)
 run_clang_tidy() {
   file=$1
   echo "Running clang-tidy on $file" >> $LOG_FILE
-  clang-tidy -p=$COMPILE_COMMANDS_PATH "$file" 2>&1 | grep -Ev "$FILTER_PATTERN"
+  clang-tidy -p=$COMPILE_COMMANDS_PATH "$file" 2>&1 | grep -Ev "$FILTER_PATTERN" | tee -a $LOG_FILE
 }
 
 echo "Here is the list of directories we are searching: "
