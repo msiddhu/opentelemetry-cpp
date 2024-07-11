@@ -52,11 +52,6 @@ Checks: >
   -modernize-avoid-c-arrays,
   -modernize-use-using
 
-FormatStyle: 'file'
-
-# TODO: include checks: readability, cppcoreguidelines, modernize , google-readability-namespace-comments, google-readability-avoid-underscore-in-googletest-name, performance-move-const-arg
-
-
 
 
 
