@@ -2,5 +2,13 @@
   "name": "C++",
   "build": {
     "dockerfile": "Dockerfile"
-  }
+  },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+    },
+    "extensions": [
+        "ms-vscode.cpptools"
+
+    ],
+  postCreateCommand: "git submodule update --init --recursive",
 }
