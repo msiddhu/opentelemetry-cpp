@@ -5,10 +5,10 @@
   },
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
+        "C_Cpp.default.compilerPath": "/usr/bin/clang",
     },
     "extensions": [
         "ms-vscode.cpptools"
-
     ],
   postCreateCommand: "git submodule update --init --recursive",
 }
