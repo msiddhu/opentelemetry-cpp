@@ -13,4 +13,5 @@ RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y \
        protobuf-compiler \
        libgmock-dev \
        libgtest-dev \
-       libbenchmark-dev
+       libbenchmark-dev \
+       clang-tidy
