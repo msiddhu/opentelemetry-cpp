@@ -363,4 +363,121 @@ TEST_F(BatchSpanProcessorTestPeer, TestScheduleDelayMillis)
   }
 }
 
+TEST_F(BatchSpanProcessorTestPeer, TestBatchSize)
+{
+  std::shared_ptr<std::atomic<std::size_t>> shut_down_counter(new std::atomic<std::size_t>(0));
+  std::shared_ptr<std::atomic<bool>> is_shutdown(new std::atomic<bool>(false));
+  std::shared_ptr<std::vector<std::unique_ptr<sdk::trace::SpanData>>> spans_received(
+      new std::vector<std::unique_ptr<sdk::trace::SpanData>>);
+
+  sdk::trace::BatchSpanProcessorOptions options;
+  options.max_queue_size = 10;
+  options.schedule_delay_millis = 100;
+
+  auto batch_processor =
+      std::shared_ptr<sdk::trace::BatchSpanProcessor>(new sdk::trace::BatchSpanProcessor(
+          std::unique_ptr<sdk::trace::SpanExporter>(
+              new MockSpanExporter(spans_received, shut_down_counter, is_shutdown)),
+          options));
+
+  const int num_spans = 20;
+  auto test_spans = GetTestSpans(batch_processor, num_spans);
+
+  for (int i = 0; i < num_spans; ++i)
+  {
+    batch_processor->OnEnd(std::move(test_spans->at(i)));
+  }
+
+  std::this_thread::sleep_for(std::chrono::milliseconds(200));
+  EXPECT_EQ(num_spans, spans_received->size());
+}
+
+TEST_F(BatchSpanProcessorTestPeer, TestExportTimeout)
+{
+  std::shared_ptr<std::atomic<std::size_t>> shut_down_counter(new std::atomic<std::size_t>(0));
+  std::shared_ptr<std::atomic<bool>> is_shutdown(new std::atomic<bool>(false));
+  std::shared_ptr<std::vector<std::unique_ptr<sdk::trace::SpanData>>> spans_received(
+      new std::vector<std::unique_ptr<sdk::trace::SpanData>>);
+
+  auto batch_processor =
+      std::shared_ptr<sdk::trace::BatchSpanProcessor>(new sdk::trace::BatchSpanProcessor(
+          std::unique_ptr<sdk::trace::SpanExporter>(
+              new MockSpanExporter(spans_received, shut_down_counter, is_shutdown, nullptr, std::chrono::milliseconds(100))),
+          sdk::trace::BatchSpanProcessorOptions()));
+
+  const int num_spans = 5;
+  auto test_spans = GetTestSpans(batch_processor, num_spans);
+
+  for (int i = 0; i < num_spans; ++i)
+  {
+    batch_processor->OnEnd(std::move(test_spans->at(i)));
+  }
+
+  EXPECT_FALSE(batch_processor->ForceFlush(std::chrono::milliseconds(50)));
+  std::this_thread::sleep_for(std::chrono::milliseconds(200));
+  EXPECT_EQ(num_spans, spans_received->size());
+}
+
+TEST_F(BatchSpanProcessorTestPeer, TestConcurrentSpans)
+{
+  std::shared_ptr<std::atomic<std::size_t>> shut_down_counter(new std::atomic<std::size_t>(0));
+  std::shared_ptr<std::atomic<bool>> is_shutdown(new std::atomic<bool>(false));
+  std::shared_ptr<std::vector<std::unique_ptr<sdk::trace::SpanData>>> spans_received(
+      new std::vector<std::unique_ptr<sdk::trace::SpanData>>);
+
+  auto batch_processor =
+      std::shared_ptr<sdk::trace::BatchSpanProcessor>(new sdk::trace::BatchSpanProcessor(
+          std::unique_ptr<sdk::trace::SpanExporter>(
+              new MockSpanExporter(spans_received, shut_down_counter, is_shutdown)),
+          sdk::trace::BatchSpanProcessorOptions()));
+
+  const int num_threads = 5;
+  const int num_spans_per_thread = 10;
+  std::vector<std::thread> threads;
+
+  for (int i = 0; i < num_threads; ++i)
+  {
+    threads.emplace_back([&batch_processor, num_spans_per_thread]() {
+      auto test_spans = GetTestSpans(batch_processor, num_spans_per_thread);
+      for (int j = 0; j < num_spans_per_thread; ++j)
+      {
+        batch_processor->OnEnd(std::move(test_spans->at(j)));
+      }
+    });
+  }
+
+  for (auto &thread : threads)
+  {
+    thread.join();
+  }
+
+  std::this_thread::sleep_for(std::chrono::milliseconds(200));
+  EXPECT_EQ(num_threads * num_spans_per_thread, spans_received->size());
+}
+
+TEST_F(BatchSpanProcessorTestPeer, TestExportFailure)
+{
+  std::shared_ptr<std::atomic<std::size_t>> shut_down_counter(new std::atomic<std::size_t>(0));
+  std::shared_ptr<std::atomic<bool>> is_shutdown(new std::atomic<bool>(false));
+  std::shared_ptr<std::vector<std::unique_ptr<sdk::trace::SpanData>>> spans_received(
+      new std::vector<std::unique_ptr<sdk::trace::SpanData>>);
+
+  auto batch_processor =
+      std::shared_ptr<sdk::trace::BatchSpanProcessor>(new sdk::trace::BatchSpanProcessor(
+          std::unique_ptr<sdk::trace::SpanExporter>(
+              new MockSpanExporter(spans_received, shut_down_counter, is_shutdown, nullptr, std::chrono::milliseconds(0))),
+          sdk::trace::BatchSpanProcessorOptions()));
+
+  const int num_spans = 5;
+  auto test_spans = GetTestSpans(batch_processor, num_spans);
+
+  for (int i = 0; i < num_spans; ++i)
+  {
+    batch_processor->OnEnd(std::move(test_spans->at(i)));
+  }
+
+  std::this_thread::sleep_for(std::chrono::milliseconds(200));
+  EXPECT_EQ(0, spans_received->size());
+}
+
 OPENTELEMETRY_END_NAMESPACE
